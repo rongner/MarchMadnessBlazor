@@ -81,6 +81,29 @@
                     </div>
                 }
             </div>
+
+            <div class="setting-group">
+                <div class="setting-label">
+                    Stat Weights
+                    <button class="btn btn-reset" style="font-size:0.75rem;padding:0.2rem 0.5rem;"
+                            @onclick="ResetWeights">Reset</button>
+                </div>
+                <p class="setting-hint" style="margin:0 0 0.75rem;">
+                    Scale each factor's influence. <strong>1.0</strong> = default model, <strong>0</strong> = ignored, <strong>2.0</strong> = double weight.
+                </p>
+                @foreach (var row in WeightRows())
+                {
+                    var r = row;
+                    <div class="weight-row">
+                        <span class="weight-label">@r.Label</span>
+                        <input type="range" class="influence-slider weight-slider"
+                               min="0" max="2" step="0.1"
+                               value="@r.Get(_s.Weights)"
+                               @oninput="e => OnWeightSlider(e, v => r.Set(_s.Weights, v))" />
+                        <span class="weight-value">@r.Get(_s.Weights).ToString("0.0")×</span>
+                    </div>
+                }
+            </div>
         }
 
     </div>
@@ -107,6 +130,38 @@
             Svc.Settings = _s;
         }
     }
+
+    private void OnWeightSlider(ChangeEventArgs e, Func<double, StatWeights> apply)
+    {
+        if (double.TryParse(e.Value?.ToString(), System.Globalization.NumberStyles.Float,
+                            System.Globalization.CultureInfo.InvariantCulture, out double v))
+        {
+            _s = _s with { Weights = apply(v) };
+            Svc.Settings = _s;
+        }
+    }
+
+    private void ResetWeights()
+    {
+        _s = _s with { Weights = new StatWeights() };
+        Svc.Settings = _s;
+    }
+
+    private record WeightRow(string Label,
+                             Func<StatWeights, double> Get,
+                             Func<StatWeights, double, StatWeights> Set);
+
+    private static IEnumerable<WeightRow> WeightRows() =>
+    [
+        new("Pace",           w => w.Pace,          (w, v) => w with { Pace          = v }),
+        new("Turnovers",      w => w.Turnovers,      (w, v) => w with { Turnovers     = v }),
+        new("Rebounding",     w => w.Rebounding,     (w, v) => w with { Rebounding    = v }),
+        new("3-Point Rate",   w => w.ThreeRate,      (w, v) => w with { ThreeRate     = v }),
+        new("3-Point %",      w => w.ThreePct,       (w, v) => w with { ThreePct      = v }),
+        new("2-Point %",      w => w.TwoPct,         (w, v) => w with { TwoPct        = v }),
+        new("Free Throw Rate",w => w.FreeThrowRate,  (w, v) => w with { FreeThrowRate = v }),
+        new("Free Throw %",   w => w.FreeThrowPct,   (w, v) => w with { FreeThrowPct  = v }),
+    ];
 
     private static string ModeName(SimMode m) => m switch
     {

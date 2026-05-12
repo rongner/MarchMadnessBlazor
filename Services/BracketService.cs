@@ -117,30 +117,33 @@ public class BracketService(TournamentDataService dataService)
         return _rng.NextDouble() < wTop / (wTop + wBot) ? top : bottom;
     }
 
-    private static Team StatsPick(Team top, Team bottom)
+    private Team StatsPick(Team top, Team bottom)
     {
         if (top.Stats == null || bottom.Stats == null)
             return top.Seed <= bottom.Seed ? top : bottom;
-        return ExpectedScore(top.Stats, bottom.Stats) >= ExpectedScore(bottom.Stats, top.Stats)
+        var w = Settings.Weights;
+        return ExpectedScore(top.Stats, bottom.Stats, w) >= ExpectedScore(bottom.Stats, top.Stats, w)
             ? top : bottom;
     }
 
-    private static double ExpectedScore(TeamStats a, TeamStats b)
+    private static double ExpectedScore(TeamStats a, TeamStats b, StatWeights w)
     {
-        double basePoss     = (a.Pace + b.Pace) / 2.0;
-        double toRate       = (a.ToPct / 100.0 + b.ToDefPct / 100.0) / 2.0;
+        double basePoss     = (a.Pace + b.Pace) / 2.0 * w.Pace;
+        double toRate       = Clamp((a.ToPct / 100.0 + b.ToDefPct / 100.0) / 2.0 * w.Turnovers);
         double shootingPoss = basePoss * (1.0 - toRate);
-        double threeRate    = (a.ThreeRate  / 100.0 + b.ThreeRateD / 100.0) / 2.0;
-        double threePct     = (a.ThreePct   / 100.0 + b.ThreePctD  / 100.0) / 2.0;
-        double twoPct       = (a.TwoPct     / 100.0 + b.TwoPctD    / 100.0) / 2.0;
+        double threeRate    = Clamp((a.ThreeRate  / 100.0 + b.ThreeRateD / 100.0) / 2.0 * w.ThreeRate);
+        double threePct     = Clamp((a.ThreePct   / 100.0 + b.ThreePctD  / 100.0) / 2.0 * w.ThreePct);
+        double twoPct       = Clamp((a.TwoPct     / 100.0 + b.TwoPctD    / 100.0) / 2.0 * w.TwoPct);
         double missRate     = threeRate * (1.0 - threePct) + (1.0 - threeRate) * (1.0 - twoPct);
-        double orbRate      = (a.OrPct / 100.0 + (1.0 - b.DrPct / 100.0)) / 2.0;
+        double orbRate      = Clamp((a.OrPct / 100.0 + (1.0 - b.DrPct / 100.0)) / 2.0 * w.Rebounding);
         double totalPoss    = shootingPoss * (1.0 + orbRate * missRate);
         double ptsPer       = threeRate * threePct * 3.0 + (1.0 - threeRate) * twoPct * 2.0;
-        double ftrA         = (a.Ftr / 100.0 + b.FtrDef / 100.0) / 2.0;
-        double ftPts        = ftrA * (a.FtPct / 100.0);
+        double ftrA         = (a.Ftr / 100.0 + b.FtrDef / 100.0) / 2.0 * w.FreeThrowRate;
+        double ftPts        = ftrA * Clamp(a.FtPct / 100.0 * w.FreeThrowPct);
         return totalPoss * (ptsPer + ftPts);
     }
+
+    private static double Clamp(double v) => Math.Clamp(v, 0.0, 1.0);
 
     private void NotifyChanged() => OnChange?.Invoke();
 }
