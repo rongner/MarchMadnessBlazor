@@ -1,0 +1,543 @@
+{
+  "year": 2024,
+  "teams": [
+    {
+      "name": "Seed 1 (East)",
+      "seed": 1,
+      "region": "East",
+      "stats": null
+    },
+    {
+      "name": "Seed 16 (East)",
+      "seed": 16,
+      "region": "East",
+      "stats": null
+    },
+    {
+      "name": "Seed 8 (East)",
+      "seed": 8,
+      "region": "East",
+      "stats": null
+    },
+    {
+      "name": "Seed 9 (East)",
+      "seed": 9,
+      "region": "East",
+      "stats": null
+    },
+    {
+      "name": "Seed 5 (East)",
+      "seed": 5,
+      "region": "East",
+      "stats": null
+    },
+    {
+      "name": "Seed 12 (East)",
+      "seed": 12,
+      "region": "East",
+      "stats": null
+    },
+    {
+      "name": "Seed 4 (East)",
+      "seed": 4,
+      "region": "East",
+      "stats": null
+    },
+    {
+      "name": "Seed 13 (East)",
+      "seed": 13,
+      "region": "East",
+      "stats": null
+    },
+    {
+      "name": "Seed 6 (East)",
+      "seed": 6,
+      "region": "East",
+      "stats": null
+    },
+    {
+      "name": "Seed 11 (East)",
+      "seed": 11,
+      "region": "East",
+      "stats": null
+    },
+    {
+      "name": "Seed 3 (East)",
+      "seed": 3,
+      "region": "East",
+      "stats": null
+    },
+    {
+      "name": "Seed 14 (East)",
+      "seed": 14,
+      "region": "East",
+      "stats": null
+    },
+    {
+      "name": "Seed 7 (East)",
+      "seed": 7,
+      "region": "East",
+      "stats": null
+    },
+    {
+      "name": "Seed 10 (East)",
+      "seed": 10,
+      "region": "East",
+      "stats": null
+    },
+    {
+      "name": "Seed 2 (East)",
+      "seed": 2,
+      "region": "East",
+      "stats": null
+    },
+    {
+      "name": "Seed 15 (East)",
+      "seed": 15,
+      "region": "East",
+      "stats": null
+    },
+    {
+      "name": "Seed 1 (South)",
+      "seed": 1,
+      "region": "South",
+      "stats": null
+    },
+    {
+      "name": "Seed 16 (South)",
+      "seed": 16,
+      "region": "South",
+      "stats": null
+    },
+    {
+      "name": "Seed 8 (South)",
+      "seed": 8,
+      "region": "South",
+      "stats": null
+    },
+    {
+      "name": "Seed 9 (South)",
+      "seed": 9,
+      "region": "South",
+      "stats": null
+    },
+    {
+      "name": "Seed 5 (South)",
+      "seed": 5,
+      "region": "South",
+      "stats": null
+    },
+    {
+      "name": "Seed 12 (South)",
+      "seed": 12,
+      "region": "South",
+      "stats": null
+    },
+    {
+      "name": "Seed 4 (South)",
+      "seed": 4,
+      "region": "South",
+      "stats": null
+    },
+    {
+      "name": "Seed 13 (South)",
+      "seed": 13,
+      "region": "South",
+      "stats": null
+    },
+    {
+      "name": "Seed 6 (South)",
+      "seed": 6,
+      "region": "South",
+      "stats": null
+    },
+    {
+      "name": "Seed 11 (South)",
+      "seed": 11,
+      "region": "South",
+      "stats": null
+    },
+    {
+      "name": "Seed 3 (South)",
+      "seed": 3,
+      "region": "South",
+      "stats": null
+    },
+    {
+      "name": "Seed 14 (South)",
+      "seed": 14,
+      "region": "South",
+      "stats": null
+    },
+    {
+      "name": "Seed 7 (South)",
+      "seed": 7,
+      "region": "South",
+      "stats": null
+    },
+    {
+      "name": "Seed 10 (South)",
+      "seed": 10,
+      "region": "South",
+      "stats": null
+    },
+    {
+      "name": "Seed 2 (South)",
+      "seed": 2,
+      "region": "South",
+      "stats": null
+    },
+    {
+      "name": "Seed 15 (South)",
+      "seed": 15,
+      "region": "South",
+      "stats": null
+    },
+    {
+      "name": "Seed 1 (West)",
+      "seed": 1,
+      "region": "West",
+      "stats": null
+    },
+    {
+      "name": "Seed 16 (West)",
+      "seed": 16,
+      "region": "West",
+      "stats": null
+    },
+    {
+      "name": "Seed 8 (West)",
+      "seed": 8,
+      "region": "West",
+      "stats": null
+    },
+    {
+      "name": "Seed 9 (West)",
+      "seed": 9,
+      "region": "West",
+      "stats": null
+    },
+    {
+      "name": "Seed 5 (West)",
+      "seed": 5,
+      "region": "West",
+      "stats": null
+    },
+    {
+      "name": "Seed 12 (West)",
+      "seed": 12,
+      "region": "West",
+      "stats": null
+    },
+    {
+      "name": "Seed 4 (West)",
+      "seed": 4,
+      "region": "West",
+      "stats": null
+    },
+    {
+      "name": "Seed 13 (West)",
+      "seed": 13,
+      "region": "West",
+      "stats": null
+    },
+    {
+      "name": "Seed 6 (West)",
+      "seed": 6,
+      "region": "West",
+      "stats": null
+    },
+    {
+      "name": "Seed 11 (West)",
+      "seed": 11,
+      "region": "West",
+      "stats": null
+    },
+    {
+      "name": "Seed 3 (West)",
+      "seed": 3,
+      "region": "West",
+      "stats": null
+    },
+    {
+      "name": "Seed 14 (West)",
+      "seed": 14,
+      "region": "West",
+      "stats": null
+    },
+    {
+      "name": "Seed 7 (West)",
+      "seed": 7,
+      "region": "West",
+      "stats": null
+    },
+    {
+      "name": "Seed 10 (West)",
+      "seed": 10,
+      "region": "West",
+      "stats": null
+    },
+    {
+      "name": "Seed 2 (West)",
+      "seed": 2,
+      "region": "West",
+      "stats": null
+    },
+    {
+      "name": "Seed 15 (West)",
+      "seed": 15,
+      "region": "West",
+      "stats": null
+    },
+    {
+      "name": "Seed 1 (Midwest)",
+      "seed": 1,
+      "region": "Midwest",
+      "stats": null
+    },
+    {
+      "name": "Seed 16 (Midwest)",
+      "seed": 16,
+      "region": "Midwest",
+      "stats": null
+    },
+    {
+      "name": "Seed 8 (Midwest)",
+      "seed": 8,
+      "region": "Midwest",
+      "stats": null
+    },
+    {
+      "name": "Seed 9 (Midwest)",
+      "seed": 9,
+      "region": "Midwest",
+      "stats": null
+    },
+    {
+      "name": "Seed 5 (Midwest)",
+      "seed": 5,
+      "region": "Midwest",
+      "stats": null
+    },
+    {
+      "name": "Seed 12 (Midwest)",
+      "seed": 12,
+      "region": "Midwest",
+      "stats": null
+    },
+    {
+      "name": "Seed 4 (Midwest)",
+      "seed": 4,
+      "region": "Midwest",
+      "stats": null
+    },
+    {
+      "name": "Seed 13 (Midwest)",
+      "seed": 13,
+      "region": "Midwest",
+      "stats": null
+    },
+    {
+      "name": "Seed 6 (Midwest)",
+      "seed": 6,
+      "region": "Midwest",
+      "stats": null
+    },
+    {
+      "name": "Seed 11 (Midwest)",
+      "seed": 11,
+      "region": "Midwest",
+      "stats": null
+    },
+    {
+      "name": "Seed 3 (Midwest)",
+      "seed": 3,
+      "region": "Midwest",
+      "stats": null
+    },
+    {
+      "name": "Seed 14 (Midwest)",
+      "seed": 14,
+      "region": "Midwest",
+      "stats": null
+    },
+    {
+      "name": "Seed 7 (Midwest)",
+      "seed": 7,
+      "region": "Midwest",
+      "stats": null
+    },
+    {
+      "name": "Seed 10 (Midwest)",
+      "seed": 10,
+      "region": "Midwest",
+      "stats": null
+    },
+    {
+      "name": "Seed 2 (Midwest)",
+      "seed": 2,
+      "region": "Midwest",
+      "stats": null
+    },
+    {
+      "name": "Seed 15 (Midwest)",
+      "seed": 15,
+      "region": "Midwest",
+      "stats": null
+    }
+  ],
+  "results": [
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null
+    ],
+    [
+      null
+    ]
+  ],
+  "scores": [
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null
+    ],
+    [
+      null
+    ]
+  ]
+}
