@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    name: Build & publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.x'
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Publish
+        run: dotnet publish --no-build --configuration Release --output publish/
+
+      - name: Verify WASM artifacts
+        run: |
+          test -f publish/wwwroot/_framework/blazor.webassembly.js \
+            || test -f publish/wwwroot/_framework/blazor.boot.json \
+            || ls publish/wwwroot/_framework/ | grep -q "blazor" \
+            || (echo "Blazor WASM output missing" && exit 1)
+          echo "WASM artifacts present"
+          ls publish/wwwroot/_framework/ | head -10
+
+      - name: Upload publish artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: blazor-wasm
+          path: publish/wwwroot/
+          retention-days: 7
