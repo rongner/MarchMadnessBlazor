@@ -189,7 +189,7 @@ def parse_bracket(raw: dict) -> tuple[list[dict], dict, dict]:
                 sid = int(region.get("sectionId", 0))
             except (TypeError, ValueError):
                 continue
-            title = (region.get("title") or "").upper()
+            title = (region.get("title") or "").strip().upper()
             for r in REGIONS_ORDER:
                 if r.upper() == title:
                     section_map[sid] = r
