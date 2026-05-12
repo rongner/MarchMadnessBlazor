@@ -1,0 +1,76 @@
+@using MarchMadnessBlazor.Models
+@using MarchMadnessBlazor.Services
+@inject BracketService Svc
+
+@* Renders one region as 4 round-columns with proper vertical spacing.
+   RegionIndex: 0=East, 1=South, 2=West, 3=Midwest
+   Reversed: true for right-half regions (West, Midwest) so rounds go E8→R1 left-to-right *@
+
+<div class="bracket-region @(Reversed ? "region-reversed" : "")">
+    <div class="region-label">@RegionName</div>
+    <div class="region-columns">
+        @foreach (var col in Columns())
+        {
+            <div class="bracket-col" style="height: @RegionHeightPx; width: @ColWidthPx;">
+                @foreach (var (globalPos, gameIdx) in col.Games)
+                {
+                    var (top, bottom) = Svc.State.GetGameTeams(Svc.State.UserPicks, col.GlobalRound, globalPos);
+                    var userWinner    = Svc.State.UserPicks[col.GlobalRound][globalPos];
+                    var simWinner     = Svc.State.SimResults[col.GlobalRound][globalPos];
+                    var topPx         = GameTopPx(col.RegionRound, gameIdx);
+
+                    <div style="position: absolute; top: @(topPx)px; width: 100%;">
+                        <GameSlot TopTeam=@top
+                                  BottomTeam=@bottom
+                                  UserWinner=@userWinner
+                                  SimWinner=@simWinner
+                                  IsSimulated=@Svc.State.IsSimulated
+                                  OnPick=@(t => Svc.Pick(col.GlobalRound, globalPos, t)) />
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public int RegionIndex { get; set; }
+    [Parameter] public bool Reversed { get; set; }
+
+    private const double GameH   = 60.0;   // px — height of one game slot
+    private const int    ColW    = 155;    // px — column width
+    private const int    Rounds  = 4;      // rounds per region (R1–E8)
+
+    private string RegionName     => new[] { "East", "South", "West", "Midwest" }[RegionIndex];
+    private string RegionHeightPx => $"{(int)(8 * GameH)}px";
+    private string ColWidthPx     => $"{ColW}px";
+
+    // Top offset (px) for game i in region-round rr (0=R1, 1=R2, 2=S16, 3=E8).
+    private static double GameTopPx(int rr, int i)
+    {
+        double factor = Math.Pow(2, rr);
+        return GameH * ((factor - 1) / 2.0 + i * factor);
+    }
+
+    // Offset into the global round array for this region.
+    // Formula: regionIndex * (8 >> regionRound)
+    private int GlobalOffset(int regionRound) => RegionIndex * (8 >> regionRound);
+
+    private record ColDef(int GlobalRound, int RegionRound, IReadOnlyList<(int GlobalPos, int GameIdx)> Games);
+
+    private IEnumerable<ColDef> Columns()
+    {
+        var cols = new List<ColDef>();
+        for (int rr = 0; rr < Rounds; rr++)
+        {
+            int globalRound = rr + 1;
+            int count  = 8 >> rr;
+            int offset = GlobalOffset(rr);
+            var games  = Enumerable.Range(0, count)
+                                   .Select(i => (GlobalPos: offset + i, GameIdx: i))
+                                   .ToList();
+            cols.Add(new ColDef(globalRound, rr, games));
+        }
+        return Reversed ? cols.AsEnumerable().Reverse() : cols;
+    }
+}

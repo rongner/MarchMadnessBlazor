@@ -1,0 +1,55 @@
+@using MarchMadnessBlazor.Models
+
+<div class="game-slot">
+    <div class="team-row @TeamClass(TopTeam, true)" @onclick="() => HandlePick(TopTeam)">
+        @if (TopTeam != null)
+        {
+            <span class="team-seed">@TopTeam.Seed</span>
+            <span class="team-name">@TopTeam.Name</span>
+        }
+        else
+        {
+            <span class="team-tbd">TBD</span>
+        }
+    </div>
+    <div class="team-row @TeamClass(BottomTeam, false)" @onclick="() => HandlePick(BottomTeam)">
+        @if (BottomTeam != null)
+        {
+            <span class="team-seed">@BottomTeam.Seed</span>
+            <span class="team-name">@BottomTeam.Name</span>
+        }
+        else
+        {
+            <span class="team-tbd">TBD</span>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter] public Team? TopTeam    { get; set; }
+    [Parameter] public Team? BottomTeam { get; set; }
+    [Parameter] public Team? UserWinner { get; set; }
+    [Parameter] public Team? SimWinner  { get; set; }
+    [Parameter] public bool  IsSimulated { get; set; }
+    [Parameter] public EventCallback<Team> OnPick { get; set; }
+
+    private string TeamClass(Team? team, bool isTop)
+    {
+        if (team == null) return "empty";
+        var css = new List<string>();
+        if (UserWinner == team) css.Add("picked");
+        if (IsSimulated && SimWinner != null)
+        {
+            if (SimWinner == team) css.Add("sim-winner");
+            if (UserWinner == team)
+                css.Add(UserWinner == SimWinner ? "correct" : "wrong");
+        }
+        return string.Join(" ", css);
+    }
+
+    private void HandlePick(Team? team)
+    {
+        if (team != null && !IsSimulated)
+            OnPick.InvokeAsync(team);
+    }
+}
