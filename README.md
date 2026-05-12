@@ -58,6 +58,7 @@ years: 2025 2026
 
 ## Future Development
 
+- **Stat weight sliders in Settings** — each factor in the possession-chain model (pace, turnover rate, offensive/defensive rebounding, 3-point rate, 3P%, 2P%, free throw rate, FT%) gets a scalar defaulting to 1.0, exposed as sliders on the Settings page; lets users explore how much each dimension drives outcomes
 - **Show projected scores in Stats mode** — `ExpectedScore()` already computes per-team expected point totals but discards them; surface these in the game slot after simulation
 - **Team name alias coverage** — some teams may get `stats: null` after a fetch due to name mismatches between Barttorvik and the NCAA API; expand `NAME_ALIASES` in `fetch_tournament_data.py` as mismatches are found
 - **"No data" message for missing years** — currently falls back silently to 2024 hardcoded teams when a year's JSON is absent; show an explicit notice instead
