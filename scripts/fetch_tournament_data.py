@@ -28,7 +28,7 @@ from bs4 import BeautifulSoup
 # Config
 # ---------------------------------------------------------------------------
 
-YEARS = list(range(2015, 2025))
+YEARS = [y for y in range(2015, 2025) if y != 2020]  # 2020: no tournament (COVID)
 
 OUT_DIR = Path(__file__).parent.parent / "wwwroot" / "data"
 
@@ -99,8 +99,12 @@ FFFINAL_COLS = {
 
 def fetch_barttorvik_stats(year: int) -> dict[str, dict]:
     url = f"https://barttorvik.com/{year}_fffinal.csv"
-    resp = requests.get(url, headers=HEADERS, timeout=30)
-    resp.raise_for_status()
+    try:
+        resp = requests.get(url, headers=HEADERS, timeout=30)
+        resp.raise_for_status()
+    except requests.HTTPError as e:
+        print(f"    WARNING: Barttorvik unavailable ({e}) — stats will be null")
+        return {}
 
     reader = csv.DictReader(io.StringIO(resp.text))
     result = {}
@@ -124,8 +128,12 @@ def fetch_barttorvik_stats(year: int) -> dict[str, dict]:
 
 def fetch_pace(year: int) -> dict[str, float]:
     url = f"https://www.warrennolan.com/basketball/{year}/stats-adv-pace"
-    resp = requests.get(url, headers=HEADERS, timeout=30)
-    resp.raise_for_status()
+    try:
+        resp = requests.get(url, headers=HEADERS, timeout=30)
+        resp.raise_for_status()
+    except requests.HTTPError as e:
+        print(f"    WARNING: WarrenNolan unavailable ({e}) — pace will be 0")
+        return {}
 
     soup = BeautifulSoup(resp.text, "html.parser")
     result = {}
@@ -439,7 +447,7 @@ def main():
 
         except Exception as exc:
             print(f"  ERROR for {year}: {exc}")
-            raise
+            import traceback; traceback.print_exc()
 
 
 if __name__ == "__main__":
