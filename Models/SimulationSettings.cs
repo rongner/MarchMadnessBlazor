@@ -1,6 +1,6 @@
 namespace MarchMadnessBlazor.Models;
 
-public enum SimMode { Random, Seeded, Chalk }
+public enum SimMode { Random, Seeded, Chalk, Stats }
 
 public record SimulationSettings
 {

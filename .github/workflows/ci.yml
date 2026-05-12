@@ -5,19 +5,67 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
+  # Re-fetch tournament data every April (after the tournament finishes).
+  schedule:
+    - cron: '0 12 15 4 *'
+  workflow_dispatch:
+    inputs:
+      years:
+        description: 'Years to fetch (space-separated, e.g. "2023 2024"). Leave blank for all.'
+        required: false
+        default: ''
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
 jobs:
-  build:
-    name: Build & publish
+  fetch-data:
+    name: Fetch tournament data
     runs-on: ubuntu-latest
+    # Run on push/schedule/manual trigger, but not on PRs (avoids noisy commits).
+    if: github.event_name != 'pull_request'
 
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Fetch data
+        run: |
+          YEARS="${{ github.event.inputs.years }}"
+          if [ -n "$YEARS" ]; then
+            python scripts/fetch_tournament_data.py --years $YEARS
+          else
+            python scripts/fetch_tournament_data.py
+          fi
+
+      - name: Commit updated data files
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add wwwroot/data/
+          git diff --cached --quiet \
+            || git commit -m "chore: refresh tournament data [skip ci]"
+          git push
+
+  build:
+    name: Build & publish
+    runs-on: ubuntu-latest
+    needs: fetch-data
+    if: always()
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Pull any data commits pushed by the fetch-data job.
+          ref: ${{ github.ref }}
 
       - uses: actions/setup-dotnet@v4
         with:
