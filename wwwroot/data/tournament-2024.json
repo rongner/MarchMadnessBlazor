@@ -2,542 +2,1688 @@
   "year": 2024,
   "teams": [
     {
-      "name": "Seed 1 (East)",
+      "name": "UConn",
       "seed": 1,
       "region": "East",
-      "stats": null
+      "stats": {
+        "pace": 66.0,
+        "toPct": 14.499999999999998,
+        "toDefPct": 16.0,
+        "orPct": 36.7,
+        "drPct": 26.700000000000003,
+        "threeRate": 40.2,
+        "threeRateD": 32.9,
+        "threePct": 35.8,
+        "threePctD": 31.2,
+        "twoPct": 59.1,
+        "twoPctD": 43.2,
+        "ftr": 31.900000000000002,
+        "ftrDef": 31.1,
+        "ftPct": 74.3
+      }
     },
     {
-      "name": "Seed 16 (East)",
+      "name": "Stetson",
       "seed": 16,
       "region": "East",
-      "stats": null
+      "stats": {
+        "pace": 66.8,
+        "toPct": 15.9,
+        "toDefPct": 13.5,
+        "orPct": 27.400000000000002,
+        "drPct": 31.5,
+        "threeRate": 41.7,
+        "threeRateD": 37.3,
+        "threePct": 35.9,
+        "threePctD": 34.6,
+        "twoPct": 52.1,
+        "twoPctD": 52.6,
+        "ftr": 31.8,
+        "ftrDef": 25.5,
+        "ftPct": 76.3
+      }
     },
     {
-      "name": "Seed 8 (East)",
+      "name": "FAU",
       "seed": 8,
       "region": "East",
-      "stats": null
+      "stats": {
+        "pace": 69.3,
+        "toPct": 16.2,
+        "toDefPct": 16.400000000000002,
+        "orPct": 33.5,
+        "drPct": 29.299999999999997,
+        "threeRate": 39.1,
+        "threeRateD": 36.2,
+        "threePct": 35.1,
+        "threePctD": 33.6,
+        "twoPct": 56.0,
+        "twoPctD": 49.2,
+        "ftr": 34.8,
+        "ftrDef": 27.3,
+        "ftPct": 72.2
+      }
     },
     {
-      "name": "Seed 9 (East)",
+      "name": "Northwestern",
       "seed": 9,
       "region": "East",
-      "stats": null
+      "stats": {
+        "pace": 64.7,
+        "toPct": 13.4,
+        "toDefPct": 18.8,
+        "orPct": 25.8,
+        "drPct": 27.800000000000004,
+        "threeRate": 36.4,
+        "threeRateD": 37.3,
+        "threePct": 39.0,
+        "threePctD": 34.5,
+        "twoPct": 49.2,
+        "twoPctD": 51.4,
+        "ftr": 29.2,
+        "ftrDef": 39.300000000000004,
+        "ftPct": 75.2
+      }
     },
     {
-      "name": "Seed 5 (East)",
+      "name": "San Diego St.",
       "seed": 5,
       "region": "East",
-      "stats": null
+      "stats": {
+        "pace": 72.2,
+        "toPct": 16.2,
+        "toDefPct": 18.099999999999998,
+        "orPct": 32.7,
+        "drPct": 28.7,
+        "threeRate": 38.0,
+        "threeRateD": 40.3,
+        "threePct": 31.5,
+        "threePctD": 31.0,
+        "twoPct": 51.5,
+        "twoPctD": 47.8,
+        "ftr": 36.7,
+        "ftrDef": 33.1,
+        "ftPct": 73.0
+      }
     },
     {
-      "name": "Seed 12 (East)",
+      "name": "UAB",
       "seed": 12,
       "region": "East",
-      "stats": null
+      "stats": {
+        "pace": 68.4,
+        "toPct": 16.8,
+        "toDefPct": 16.2,
+        "orPct": 35.4,
+        "drPct": 31.3,
+        "threeRate": 31.5,
+        "threeRateD": 36.6,
+        "threePct": 33.1,
+        "threePctD": 34.8,
+        "twoPct": 50.1,
+        "twoPctD": 50.2,
+        "ftr": 40.6,
+        "ftrDef": 31.5,
+        "ftPct": 74.3
+      }
     },
     {
-      "name": "Seed 4 (East)",
+      "name": "Auburn",
       "seed": 4,
       "region": "East",
-      "stats": null
+      "stats": {
+        "pace": 71.1,
+        "toPct": 15.1,
+        "toDefPct": 18.099999999999998,
+        "orPct": 32.9,
+        "drPct": 30.2,
+        "threeRate": 37.5,
+        "threeRateD": 33.4,
+        "threePct": 35.2,
+        "threePctD": 30.2,
+        "twoPct": 55.1,
+        "twoPctD": 42.9,
+        "ftr": 38.3,
+        "ftrDef": 41.5,
+        "ftPct": 75.0
+      }
     },
     {
-      "name": "Seed 13 (East)",
+      "name": "Yale",
       "seed": 13,
       "region": "East",
-      "stats": null
+      "stats": {
+        "pace": 66.0,
+        "toPct": 14.299999999999999,
+        "toDefPct": 16.2,
+        "orPct": 27.800000000000004,
+        "drPct": 24.2,
+        "threeRate": 35.4,
+        "threeRateD": 41.5,
+        "threePct": 35.0,
+        "threePctD": 34.5,
+        "twoPct": 51.9,
+        "twoPctD": 49.4,
+        "ftr": 27.800000000000004,
+        "ftrDef": 29.4,
+        "ftPct": 70.5
+      }
     },
     {
-      "name": "Seed 6 (East)",
+      "name": "BYU",
       "seed": 6,
       "region": "East",
-      "stats": null
+      "stats": {
+        "pace": 69.8,
+        "toPct": 15.299999999999999,
+        "toDefPct": 16.0,
+        "orPct": 32.800000000000004,
+        "drPct": 24.6,
+        "threeRate": 50.4,
+        "threeRateD": 34.0,
+        "threePct": 34.8,
+        "threePctD": 32.0,
+        "twoPct": 57.5,
+        "twoPctD": 48.3,
+        "ftr": 25.4,
+        "ftrDef": 32.0,
+        "ftPct": 74.2
+      }
     },
     {
-      "name": "Seed 11 (East)",
+      "name": "Duquesne",
       "seed": 11,
       "region": "East",
-      "stats": null
+      "stats": {
+        "pace": 66.8,
+        "toPct": 17.4,
+        "toDefPct": 19.2,
+        "orPct": 29.799999999999997,
+        "drPct": 30.3,
+        "threeRate": 39.1,
+        "threeRateD": 37.4,
+        "threePct": 33.9,
+        "threePctD": 31.8,
+        "twoPct": 49.4,
+        "twoPctD": 49.0,
+        "ftr": 32.5,
+        "ftrDef": 35.0,
+        "ftPct": 71.6
+      }
     },
     {
-      "name": "Seed 3 (East)",
+      "name": "Illinois",
       "seed": 3,
       "region": "East",
-      "stats": null
+      "stats": {
+        "pace": 70.3,
+        "toPct": 15.0,
+        "toDefPct": 12.3,
+        "orPct": 35.6,
+        "drPct": 26.3,
+        "threeRate": 38.6,
+        "threeRateD": 28.3,
+        "threePct": 34.9,
+        "threePctD": 34.1,
+        "twoPct": 54.4,
+        "twoPctD": 46.8,
+        "ftr": 37.1,
+        "ftrDef": 26.700000000000003,
+        "ftPct": 73.6
+      }
     },
     {
-      "name": "Seed 14 (East)",
+      "name": "Morehead St.",
       "seed": 14,
       "region": "East",
-      "stats": null
+      "stats": {
+        "pace": 65.4,
+        "toPct": 18.2,
+        "toDefPct": 15.4,
+        "orPct": 31.900000000000002,
+        "drPct": 26.5,
+        "threeRate": 45.2,
+        "threeRateD": 31.6,
+        "threePct": 35.3,
+        "threePctD": 31.8,
+        "twoPct": 55.1,
+        "twoPctD": 45.8,
+        "ftr": 30.599999999999998,
+        "ftrDef": 32.300000000000004,
+        "ftPct": 71.5
+      }
     },
     {
-      "name": "Seed 7 (East)",
+      "name": "Washington St.",
       "seed": 7,
       "region": "East",
-      "stats": null
+      "stats": {
+        "pace": 72.2,
+        "toPct": 16.400000000000002,
+        "toDefPct": 15.7,
+        "orPct": 32.9,
+        "drPct": 25.0,
+        "threeRate": 32.2,
+        "threeRateD": 31.1,
+        "threePct": 33.9,
+        "threePctD": 32.5,
+        "twoPct": 52.2,
+        "twoPctD": 46.5,
+        "ftr": 31.6,
+        "ftrDef": 32.300000000000004,
+        "ftPct": 70.4
+      }
     },
     {
-      "name": "Seed 10 (East)",
+      "name": "Drake",
       "seed": 10,
       "region": "East",
-      "stats": null
+      "stats": {
+        "pace": 68.6,
+        "toPct": 13.8,
+        "toDefPct": 17.5,
+        "orPct": 24.099999999999998,
+        "drPct": 22.5,
+        "threeRate": 39.2,
+        "threeRateD": 38.9,
+        "threePct": 36.4,
+        "threePctD": 33.3,
+        "twoPct": 54.8,
+        "twoPctD": 51.3,
+        "ftr": 32.300000000000004,
+        "ftrDef": 31.3,
+        "ftPct": 75.6
+      }
     },
     {
-      "name": "Seed 2 (East)",
+      "name": "Iowa St.",
       "seed": 2,
       "region": "East",
-      "stats": null
+      "stats": {
+        "pace": 72.9,
+        "toPct": 15.4,
+        "toDefPct": 25.3,
+        "orPct": 31.1,
+        "drPct": 29.4,
+        "threeRate": 31.7,
+        "threeRateD": 45.2,
+        "threePct": 35.8,
+        "threePctD": 31.5,
+        "twoPct": 51.2,
+        "twoPctD": 47.4,
+        "ftr": 35.4,
+        "ftrDef": 34.8,
+        "ftPct": 70.2
+      }
     },
     {
-      "name": "Seed 15 (East)",
+      "name": "South Dakota St.",
       "seed": 15,
       "region": "East",
-      "stats": null
+      "stats": {
+        "pace": 68.0,
+        "toPct": 16.6,
+        "toDefPct": 16.400000000000002,
+        "orPct": 24.4,
+        "drPct": 25.1,
+        "threeRate": 40.4,
+        "threeRateD": 46.9,
+        "threePct": 36.4,
+        "threePctD": 35.5,
+        "twoPct": 55.6,
+        "twoPctD": 49.5,
+        "ftr": 30.099999999999998,
+        "ftrDef": 27.0,
+        "ftPct": 71.8
+      }
     },
     {
-      "name": "Seed 1 (South)",
+      "name": "Houston",
       "seed": 1,
       "region": "South",
-      "stats": null
+      "stats": {
+        "pace": 64.0,
+        "toPct": 13.8,
+        "toDefPct": 24.4,
+        "orPct": 36.8,
+        "drPct": 31.2,
+        "threeRate": 36.8,
+        "threeRateD": 40.1,
+        "threePct": 34.8,
+        "threePctD": 30.1,
+        "twoPct": 49.2,
+        "twoPctD": 43.1,
+        "ftr": 30.8,
+        "ftrDef": 39.4,
+        "ftPct": 68.7
+      }
     },
     {
-      "name": "Seed 16 (South)",
+      "name": "Longwood",
       "seed": 16,
       "region": "South",
-      "stats": null
+      "stats": {
+        "pace": 67.9,
+        "toPct": 18.3,
+        "toDefPct": 19.400000000000002,
+        "orPct": 36.3,
+        "drPct": 25.900000000000002,
+        "threeRate": 28.4,
+        "threeRateD": 39.6,
+        "threePct": 34.0,
+        "threePctD": 35.1,
+        "twoPct": 48.4,
+        "twoPctD": 51.4,
+        "ftr": 39.5,
+        "ftrDef": 36.199999999999996,
+        "ftPct": 69.3
+      }
     },
     {
-      "name": "Seed 8 (South)",
+      "name": "Nebraska",
       "seed": 8,
       "region": "South",
-      "stats": null
+      "stats": {
+        "pace": 69.3,
+        "toPct": 15.8,
+        "toDefPct": 16.2,
+        "orPct": 27.6,
+        "drPct": 30.3,
+        "threeRate": 44.3,
+        "threeRateD": 41.4,
+        "threePct": 35.7,
+        "threePctD": 32.5,
+        "twoPct": 52.8,
+        "twoPctD": 45.2,
+        "ftr": 32.6,
+        "ftrDef": 27.700000000000003,
+        "ftPct": 76.0
+      }
     },
     {
-      "name": "Seed 9 (South)",
+      "name": "Texas A&M",
       "seed": 9,
       "region": "South",
-      "stats": null
+      "stats": {
+        "pace": 67.5,
+        "toPct": 14.099999999999998,
+        "toDefPct": 16.7,
+        "orPct": 42.199999999999996,
+        "drPct": 27.900000000000002,
+        "threeRate": 37.7,
+        "threeRateD": 44.9,
+        "threePct": 29.3,
+        "threePctD": 33.8,
+        "twoPct": 46.8,
+        "twoPctD": 50.3,
+        "ftr": 38.6,
+        "ftrDef": 31.900000000000002,
+        "ftPct": 70.7
+      }
     },
     {
-      "name": "Seed 5 (South)",
+      "name": "Wisconsin",
       "seed": 5,
       "region": "South",
-      "stats": null
+      "stats": {
+        "pace": 65.8,
+        "toPct": 14.899999999999999,
+        "toDefPct": 16.900000000000002,
+        "orPct": 30.2,
+        "drPct": 24.5,
+        "threeRate": 35.5,
+        "threeRateD": 34.3,
+        "threePct": 34.9,
+        "threePctD": 36.9,
+        "twoPct": 52.2,
+        "twoPctD": 50.2,
+        "ftr": 33.800000000000004,
+        "ftrDef": 33.800000000000004,
+        "ftPct": 75.5
+      }
     },
     {
-      "name": "Seed 12 (South)",
+      "name": "James Madison",
       "seed": 12,
       "region": "South",
-      "stats": null
+      "stats": {
+        "pace": 70.9,
+        "toPct": 14.899999999999999,
+        "toDefPct": 19.7,
+        "orPct": 31.8,
+        "drPct": 27.700000000000003,
+        "threeRate": 37.8,
+        "threeRateD": 35.5,
+        "threePct": 36.0,
+        "threePctD": 29.7,
+        "twoPct": 53.8,
+        "twoPctD": 48.6,
+        "ftr": 34.9,
+        "ftrDef": 35.099999999999994,
+        "ftPct": 70.0
+      }
     },
     {
-      "name": "Seed 4 (South)",
+      "name": "Duke",
       "seed": 4,
       "region": "South",
-      "stats": null
+      "stats": {
+        "pace": 67.3,
+        "toPct": 14.399999999999999,
+        "toDefPct": 16.900000000000002,
+        "orPct": 32.0,
+        "drPct": 25.900000000000002,
+        "threeRate": 37.5,
+        "threeRateD": 34.7,
+        "threePct": 37.7,
+        "threePctD": 31.8,
+        "twoPct": 53.5,
+        "twoPctD": 49.0,
+        "ftr": 34.300000000000004,
+        "ftrDef": 28.1,
+        "ftPct": 72.3
+      }
     },
     {
-      "name": "Seed 13 (South)",
+      "name": "Vermont",
       "seed": 13,
       "region": "South",
-      "stats": null
+      "stats": {
+        "pace": 65.6,
+        "toPct": 13.900000000000002,
+        "toDefPct": 15.1,
+        "orPct": 22.3,
+        "drPct": 23.5,
+        "threeRate": 43.9,
+        "threeRateD": 36.5,
+        "threePct": 33.3,
+        "threePctD": 31.5,
+        "twoPct": 52.9,
+        "twoPctD": 46.5,
+        "ftr": 29.2,
+        "ftrDef": 26.8,
+        "ftPct": 71.8
+      }
     },
     {
-      "name": "Seed 6 (South)",
+      "name": "Texas Tech",
       "seed": 6,
       "region": "South",
-      "stats": null
+      "stats": {
+        "pace": 67.4,
+        "toPct": 16.5,
+        "toDefPct": 17.0,
+        "orPct": 30.2,
+        "drPct": 30.3,
+        "threeRate": 41.4,
+        "threeRateD": 38.6,
+        "threePct": 35.9,
+        "threePctD": 32.2,
+        "twoPct": 51.6,
+        "twoPctD": 49.8,
+        "ftr": 34.2,
+        "ftrDef": 27.200000000000003,
+        "ftPct": 78.0
+      }
     },
     {
-      "name": "Seed 11 (South)",
+      "name": "NC State",
       "seed": 11,
       "region": "South",
-      "stats": null
+      "stats": {
+        "pace": 68.4,
+        "toPct": 13.8,
+        "toDefPct": 17.5,
+        "orPct": 28.199999999999996,
+        "drPct": 29.099999999999998,
+        "threeRate": 33.3,
+        "threeRateD": 36.7,
+        "threePct": 34.4,
+        "threePctD": 33.6,
+        "twoPct": 50.2,
+        "twoPctD": 49.0,
+        "ftr": 32.0,
+        "ftrDef": 31.5,
+        "ftPct": 73.3
+      }
     },
     {
-      "name": "Seed 3 (South)",
+      "name": "Kentucky",
       "seed": 3,
       "region": "South",
-      "stats": null
+      "stats": {
+        "pace": 73.7,
+        "toPct": 14.2,
+        "toDefPct": 15.9,
+        "orPct": 28.9,
+        "drPct": 30.3,
+        "threeRate": 37.5,
+        "threeRateD": 40.1,
+        "threePct": 40.9,
+        "threePctD": 33.2,
+        "twoPct": 54.7,
+        "twoPctD": 49.4,
+        "ftr": 30.4,
+        "ftrDef": 33.5,
+        "ftPct": 77.2
+      }
     },
     {
-      "name": "Seed 14 (South)",
+      "name": "Oakland",
       "seed": 14,
       "region": "South",
-      "stats": null
+      "stats": {
+        "pace": 68.3,
+        "toPct": 15.9,
+        "toDefPct": 16.2,
+        "orPct": 30.4,
+        "drPct": 28.799999999999997,
+        "threeRate": 41.4,
+        "threeRateD": 40.9,
+        "threePct": 35.5,
+        "threePctD": 33.9,
+        "twoPct": 51.0,
+        "twoPctD": 50.5,
+        "ftr": 30.8,
+        "ftrDef": 26.900000000000002,
+        "ftPct": 75.1
+      }
     },
     {
-      "name": "Seed 7 (South)",
+      "name": "Florida",
       "seed": 7,
       "region": "South",
-      "stats": null
+      "stats": {
+        "pace": 73.0,
+        "toPct": 15.7,
+        "toDefPct": 14.499999999999998,
+        "orPct": 37.3,
+        "drPct": 28.799999999999997,
+        "threeRate": 34.5,
+        "threeRateD": 32.4,
+        "threePct": 34.5,
+        "threePctD": 32.6,
+        "twoPct": 51.8,
+        "twoPctD": 49.5,
+        "ftr": 38.4,
+        "ftrDef": 34.8,
+        "ftPct": 71.5
+      }
     },
     {
-      "name": "Seed 10 (South)",
+      "name": "Colorado",
       "seed": 10,
       "region": "South",
-      "stats": null
+      "stats": {
+        "pace": 68.9,
+        "toPct": 18.099999999999998,
+        "toDefPct": 15.2,
+        "orPct": 32.0,
+        "drPct": 24.7,
+        "threeRate": 30.6,
+        "threeRateD": 35.2,
+        "threePct": 39.1,
+        "threePctD": 32.1,
+        "twoPct": 54.0,
+        "twoPctD": 50.6,
+        "ftr": 35.099999999999994,
+        "ftrDef": 27.3,
+        "ftPct": 78.4
+      }
     },
     {
-      "name": "Seed 2 (South)",
+      "name": "Marquette",
       "seed": 2,
       "region": "South",
-      "stats": null
+      "stats": {
+        "pace": 69.4,
+        "toPct": 14.299999999999999,
+        "toDefPct": 21.099999999999998,
+        "orPct": 25.7,
+        "drPct": 30.8,
+        "threeRate": 41.1,
+        "threeRateD": 42.8,
+        "threePct": 35.2,
+        "threePctD": 33.7,
+        "twoPct": 56.6,
+        "twoPctD": 49.3,
+        "ftr": 25.5,
+        "ftrDef": 26.900000000000002,
+        "ftPct": 70.3
+      }
     },
     {
-      "name": "Seed 15 (South)",
+      "name": "Western Ky.",
       "seed": 15,
       "region": "South",
-      "stats": null
+      "stats": {
+        "pace": 75.3,
+        "toPct": 19.7,
+        "toDefPct": 15.5,
+        "orPct": 33.7,
+        "drPct": 29.599999999999998,
+        "threeRate": 38.9,
+        "threeRateD": 38.5,
+        "threePct": 32.8,
+        "threePctD": 34.1,
+        "twoPct": 48.4,
+        "twoPctD": 50.8,
+        "ftr": 31.5,
+        "ftrDef": 31.5,
+        "ftPct": 62.3
+      }
     },
     {
-      "name": "Seed 1 (West)",
+      "name": "North Carolina",
       "seed": 1,
       "region": "West",
-      "stats": null
+      "stats": {
+        "pace": 71.2,
+        "toPct": 14.099999999999998,
+        "toDefPct": 14.799999999999999,
+        "orPct": 33.0,
+        "drPct": 23.7,
+        "threeRate": 36.1,
+        "threeRateD": 35.8,
+        "threePct": 35.9,
+        "threePctD": 32.0,
+        "twoPct": 50.2,
+        "twoPctD": 46.0,
+        "ftr": 36.199999999999996,
+        "ftrDef": 28.199999999999996,
+        "ftPct": 75.9
+      }
     },
     {
-      "name": "Seed 16 (West)",
+      "name": "Wagner",
       "seed": 16,
       "region": "West",
-      "stats": null
+      "stats": {
+        "pace": 62.8,
+        "toPct": 15.7,
+        "toDefPct": 16.8,
+        "orPct": 28.799999999999997,
+        "drPct": 27.700000000000003,
+        "threeRate": 37.7,
+        "threeRateD": 40.8,
+        "threePct": 32.2,
+        "threePctD": 30.4,
+        "twoPct": 43.1,
+        "twoPctD": 51.0,
+        "ftr": 26.400000000000002,
+        "ftrDef": 30.2,
+        "ftPct": 70.0
+      }
     },
     {
-      "name": "Seed 8 (West)",
+      "name": "Mississippi St.",
       "seed": 8,
       "region": "West",
-      "stats": null
+      "stats": {
+        "pace": 68.5,
+        "toPct": 18.9,
+        "toDefPct": 18.4,
+        "orPct": 35.4,
+        "drPct": 27.900000000000002,
+        "threeRate": 38.5,
+        "threeRateD": 41.2,
+        "threePct": 32.2,
+        "threePctD": 29.8,
+        "twoPct": 53.4,
+        "twoPctD": 50.3,
+        "ftr": 37.4,
+        "ftrDef": 31.8,
+        "ftPct": 67.0
+      }
     },
     {
-      "name": "Seed 9 (West)",
+      "name": "Michigan St.",
       "seed": 9,
       "region": "West",
-      "stats": null
+      "stats": {
+        "pace": 68.8,
+        "toPct": 15.0,
+        "toDefPct": 18.5,
+        "orPct": 29.799999999999997,
+        "drPct": 28.499999999999996,
+        "threeRate": 30.5,
+        "threeRateD": 41.6,
+        "threePct": 36.2,
+        "threePctD": 32.6,
+        "twoPct": 50.5,
+        "twoPctD": 47.4,
+        "ftr": 29.299999999999997,
+        "ftrDef": 32.4,
+        "ftPct": 70.8
+      }
     },
     {
-      "name": "Seed 5 (West)",
+      "name": "Saint Mary's",
       "seed": 5,
       "region": "West",
-      "stats": null
+      "stats": {
+        "pace": 0.0,
+        "toPct": 16.0,
+        "toDefPct": 16.7,
+        "orPct": 38.7,
+        "drPct": 22.3,
+        "threeRate": 36.8,
+        "threeRateD": 29.2,
+        "threePct": 35.3,
+        "threePctD": 32.3,
+        "twoPct": 52.7,
+        "twoPctD": 43.8,
+        "ftr": 28.000000000000004,
+        "ftrDef": 33.4,
+        "ftPct": 67.2
+      }
     },
     {
-      "name": "Seed 12 (West)",
+      "name": "Grand Canyon",
       "seed": 12,
       "region": "West",
-      "stats": null
+      "stats": {
+        "pace": 69.5,
+        "toPct": 17.8,
+        "toDefPct": 19.8,
+        "orPct": 34.1,
+        "drPct": 30.2,
+        "threeRate": 36.1,
+        "threeRateD": 34.2,
+        "threePct": 33.5,
+        "threePctD": 32.1,
+        "twoPct": 52.1,
+        "twoPctD": 44.5,
+        "ftr": 46.7,
+        "ftrDef": 34.1,
+        "ftPct": 74.9
+      }
     },
     {
-      "name": "Seed 4 (West)",
+      "name": "Alabama",
       "seed": 4,
       "region": "West",
-      "stats": null
+      "stats": {
+        "pace": 73.8,
+        "toPct": 15.9,
+        "toDefPct": 15.2,
+        "orPct": 34.9,
+        "drPct": 30.9,
+        "threeRate": 46.5,
+        "threeRateD": 37.2,
+        "threePct": 37.3,
+        "threePctD": 31.7,
+        "twoPct": 56.7,
+        "twoPctD": 50.9,
+        "ftr": 35.3,
+        "ftrDef": 38.800000000000004,
+        "ftPct": 77.2
+      }
     },
     {
-      "name": "Seed 13 (West)",
+      "name": "Charleston",
       "seed": 13,
       "region": "West",
-      "stats": null
+      "stats": {
+        "pace": 69.9,
+        "toPct": 14.299999999999999,
+        "toDefPct": 16.2,
+        "orPct": 33.7,
+        "drPct": 26.400000000000002,
+        "threeRate": 46.9,
+        "threeRateD": 36.9,
+        "threePct": 34.7,
+        "threePctD": 34.5,
+        "twoPct": 52.5,
+        "twoPctD": 50.8,
+        "ftr": 27.200000000000003,
+        "ftrDef": 29.299999999999997,
+        "ftPct": 72.3
+      }
     },
     {
-      "name": "Seed 6 (West)",
+      "name": "Clemson",
       "seed": 6,
       "region": "West",
-      "stats": null
+      "stats": {
+        "pace": 67.9,
+        "toPct": 14.799999999999999,
+        "toDefPct": 13.900000000000002,
+        "orPct": 27.200000000000003,
+        "drPct": 26.6,
+        "threeRate": 39.9,
+        "threeRateD": 41.1,
+        "threePct": 35.1,
+        "threePctD": 33.1,
+        "twoPct": 54.6,
+        "twoPctD": 47.1,
+        "ftr": 30.7,
+        "ftrDef": 32.1,
+        "ftPct": 78.0
+      }
     },
     {
-      "name": "Seed 11 (West)",
+      "name": "New Mexico",
       "seed": 11,
       "region": "West",
-      "stats": null
+      "stats": {
+        "pace": 72.4,
+        "toPct": 14.000000000000002,
+        "toDefPct": 19.3,
+        "orPct": 33.5,
+        "drPct": 27.0,
+        "threeRate": 29.9,
+        "threeRateD": 36.5,
+        "threePct": 32.7,
+        "threePctD": 30.7,
+        "twoPct": 51.1,
+        "twoPctD": 49.2,
+        "ftr": 33.2,
+        "ftrDef": 33.4,
+        "ftPct": 71.6
+      }
     },
     {
-      "name": "Seed 3 (West)",
+      "name": "Baylor",
       "seed": 3,
       "region": "West",
-      "stats": null
+      "stats": {
+        "pace": 66.9,
+        "toPct": 17.7,
+        "toDefPct": 17.0,
+        "orPct": 35.0,
+        "drPct": 26.900000000000002,
+        "threeRate": 38.9,
+        "threeRateD": 35.4,
+        "threePct": 39.5,
+        "threePctD": 33.4,
+        "twoPct": 53.5,
+        "twoPctD": 52.1,
+        "ftr": 40.2,
+        "ftrDef": 31.2,
+        "ftPct": 73.5
+      }
     },
     {
-      "name": "Seed 14 (West)",
+      "name": "Colgate",
       "seed": 14,
       "region": "West",
-      "stats": null
+      "stats": {
+        "pace": 65.9,
+        "toPct": 16.2,
+        "toDefPct": 16.2,
+        "orPct": 25.1,
+        "drPct": 24.8,
+        "threeRate": 38.1,
+        "threeRateD": 40.0,
+        "threePct": 35.5,
+        "threePctD": 30.8,
+        "twoPct": 53.4,
+        "twoPctD": 49.1,
+        "ftr": 27.500000000000004,
+        "ftrDef": 24.5,
+        "ftPct": 68.1
+      }
     },
     {
-      "name": "Seed 7 (West)",
+      "name": "Dayton",
       "seed": 7,
       "region": "West",
-      "stats": null
+      "stats": {
+        "pace": 64.5,
+        "toPct": 16.0,
+        "toDefPct": 15.9,
+        "orPct": 26.400000000000002,
+        "drPct": 28.599999999999998,
+        "threeRate": 44.3,
+        "threeRateD": 40.1,
+        "threePct": 39.9,
+        "threePctD": 32.0,
+        "twoPct": 53.4,
+        "twoPctD": 48.5,
+        "ftr": 36.7,
+        "ftrDef": 21.9,
+        "ftPct": 74.0
+      }
     },
     {
-      "name": "Seed 10 (West)",
+      "name": "Nevada",
       "seed": 10,
       "region": "West",
-      "stats": null
+      "stats": {
+        "pace": 67.1,
+        "toPct": 15.2,
+        "toDefPct": 17.4,
+        "orPct": 27.3,
+        "drPct": 26.900000000000002,
+        "threeRate": 33.7,
+        "threeRateD": 41.0,
+        "threePct": 36.4,
+        "threePctD": 31.6,
+        "twoPct": 52.5,
+        "twoPctD": 49.1,
+        "ftr": 45.0,
+        "ftrDef": 34.2,
+        "ftPct": 72.1
+      }
     },
     {
-      "name": "Seed 2 (West)",
+      "name": "Arizona",
       "seed": 2,
       "region": "West",
-      "stats": null
+      "stats": {
+        "pace": 73.2,
+        "toPct": 16.0,
+        "toDefPct": 18.0,
+        "orPct": 35.6,
+        "drPct": 23.3,
+        "threeRate": 33.4,
+        "threeRateD": 37.9,
+        "threePct": 36.6,
+        "threePctD": 32.9,
+        "twoPct": 54.4,
+        "twoPctD": 47.7,
+        "ftr": 36.4,
+        "ftrDef": 25.900000000000002,
+        "ftPct": 71.7
+      }
     },
     {
-      "name": "Seed 15 (West)",
+      "name": "Long Beach St.",
       "seed": 15,
       "region": "West",
-      "stats": null
+      "stats": {
+        "pace": 72.1,
+        "toPct": 17.1,
+        "toDefPct": 18.3,
+        "orPct": 33.2,
+        "drPct": 29.4,
+        "threeRate": 28.1,
+        "threeRateD": 43.7,
+        "threePct": 30.9,
+        "threePctD": 35.1,
+        "twoPct": 49.3,
+        "twoPctD": 49.9,
+        "ftr": 37.8,
+        "ftrDef": 32.300000000000004,
+        "ftPct": 70.8
+      }
     },
     {
-      "name": "Seed 1 (Midwest)",
+      "name": "Purdue",
       "seed": 1,
       "region": "Midwest",
-      "stats": null
+      "stats": {
+        "pace": 68.2,
+        "toPct": 16.400000000000002,
+        "toDefPct": 13.700000000000001,
+        "orPct": 37.7,
+        "drPct": 24.3,
+        "threeRate": 34.7,
+        "threeRateD": 36.9,
+        "threePct": 40.4,
+        "threePctD": 31.5,
+        "twoPct": 53.3,
+        "twoPctD": 47.7,
+        "ftr": 41.3,
+        "ftrDef": 22.0,
+        "ftPct": 72.0
+      }
     },
     {
-      "name": "Seed 16 (Midwest)",
+      "name": "Grambling St.",
       "seed": 16,
       "region": "Midwest",
-      "stats": null
+      "stats": {
+        "pace": 66.3,
+        "toPct": 20.0,
+        "toDefPct": 18.8,
+        "orPct": 27.900000000000002,
+        "drPct": 32.800000000000004,
+        "threeRate": 29.0,
+        "threeRateD": 34.2,
+        "threePct": 34.0,
+        "threePctD": 34.3,
+        "twoPct": 46.9,
+        "twoPctD": 48.8,
+        "ftr": 38.800000000000004,
+        "ftrDef": 33.800000000000004,
+        "ftPct": 70.9
+      }
     },
     {
-      "name": "Seed 8 (Midwest)",
+      "name": "Utah St.",
       "seed": 8,
       "region": "Midwest",
-      "stats": null
+      "stats": {
+        "pace": 72.1,
+        "toPct": 15.5,
+        "toDefPct": 16.400000000000002,
+        "orPct": 27.800000000000004,
+        "drPct": 26.6,
+        "threeRate": 33.6,
+        "threeRateD": 36.5,
+        "threePct": 32.5,
+        "threePctD": 29.7,
+        "twoPct": 56.7,
+        "twoPctD": 52.8,
+        "ftr": 39.0,
+        "ftrDef": 30.599999999999998,
+        "ftPct": 71.8
+      }
     },
     {
-      "name": "Seed 9 (Midwest)",
+      "name": "TCU",
       "seed": 9,
       "region": "Midwest",
-      "stats": null
+      "stats": {
+        "pace": 70.8,
+        "toPct": 18.0,
+        "toDefPct": 20.599999999999998,
+        "orPct": 35.9,
+        "drPct": 28.4,
+        "threeRate": 30.3,
+        "threeRateD": 35.1,
+        "threePct": 35.4,
+        "threePctD": 33.0,
+        "twoPct": 50.8,
+        "twoPctD": 51.3,
+        "ftr": 35.0,
+        "ftrDef": 35.4,
+        "ftPct": 73.1
+      }
     },
     {
-      "name": "Seed 5 (Midwest)",
+      "name": "Gonzaga",
       "seed": 5,
       "region": "Midwest",
-      "stats": null
+      "stats": {
+        "pace": 69.2,
+        "toPct": 14.000000000000002,
+        "toDefPct": 16.1,
+        "orPct": 33.2,
+        "drPct": 27.700000000000003,
+        "threeRate": 31.3,
+        "threeRateD": 36.6,
+        "threePct": 36.2,
+        "threePctD": 34.1,
+        "twoPct": 58.3,
+        "twoPctD": 45.1,
+        "ftr": 30.7,
+        "ftrDef": 25.2,
+        "ftPct": 72.6
+      }
     },
     {
-      "name": "Seed 12 (Midwest)",
+      "name": "McNeese",
       "seed": 12,
       "region": "Midwest",
-      "stats": null
+      "stats": {
+        "pace": 66.8,
+        "toPct": 14.000000000000002,
+        "toDefPct": 22.900000000000002,
+        "orPct": 31.900000000000002,
+        "drPct": 30.599999999999998,
+        "threeRate": 33.5,
+        "threeRateD": 47.6,
+        "threePct": 38.7,
+        "threePctD": 33.4,
+        "twoPct": 52.2,
+        "twoPctD": 46.6,
+        "ftr": 40.1,
+        "ftrDef": 33.7,
+        "ftPct": 69.6
+      }
     },
     {
-      "name": "Seed 4 (Midwest)",
+      "name": "Kansas",
       "seed": 4,
       "region": "Midwest",
-      "stats": null
+      "stats": {
+        "pace": 69.8,
+        "toPct": 16.5,
+        "toDefPct": 16.5,
+        "orPct": 25.7,
+        "drPct": 26.5,
+        "threeRate": 29.8,
+        "threeRateD": 41.0,
+        "threePct": 33.6,
+        "threePctD": 34.6,
+        "twoPct": 54.7,
+        "twoPctD": 45.8,
+        "ftr": 32.5,
+        "ftrDef": 28.499999999999996,
+        "ftPct": 72.2
+      }
     },
     {
-      "name": "Seed 13 (Midwest)",
+      "name": "Samford",
       "seed": 13,
       "region": "Midwest",
-      "stats": null
+      "stats": {
+        "pace": 73.8,
+        "toPct": 17.8,
+        "toDefPct": 21.7,
+        "orPct": 30.099999999999998,
+        "drPct": 31.900000000000002,
+        "threeRate": 41.2,
+        "threeRateD": 39.8,
+        "threePct": 39.5,
+        "threePctD": 33.8,
+        "twoPct": 55.0,
+        "twoPctD": 50.3,
+        "ftr": 36.199999999999996,
+        "ftrDef": 37.3,
+        "ftPct": 72.1
+      }
     },
     {
-      "name": "Seed 6 (Midwest)",
+      "name": "South Carolina",
       "seed": 6,
       "region": "Midwest",
-      "stats": null
+      "stats": {
+        "pace": 65.0,
+        "toPct": 15.5,
+        "toDefPct": 14.899999999999999,
+        "orPct": 32.800000000000004,
+        "drPct": 27.900000000000002,
+        "threeRate": 41.1,
+        "threeRateD": 31.3,
+        "threePct": 33.9,
+        "threePctD": 33.9,
+        "twoPct": 50.9,
+        "twoPctD": 47.3,
+        "ftr": 31.8,
+        "ftrDef": 31.6,
+        "ftPct": 71.1
+      }
     },
     {
-      "name": "Seed 11 (Midwest)",
+      "name": "Oregon",
       "seed": 11,
       "region": "Midwest",
-      "stats": null
+      "stats": {
+        "pace": 68.2,
+        "toPct": 14.7,
+        "toDefPct": 17.8,
+        "orPct": 28.599999999999998,
+        "drPct": 27.3,
+        "threeRate": 36.3,
+        "threeRateD": 36.9,
+        "threePct": 33.8,
+        "threePctD": 34.9,
+        "twoPct": 52.6,
+        "twoPctD": 51.0,
+        "ftr": 32.0,
+        "ftrDef": 32.300000000000004,
+        "ftPct": 71.9
+      }
     },
     {
-      "name": "Seed 3 (Midwest)",
+      "name": "Creighton",
       "seed": 3,
       "region": "Midwest",
-      "stats": null
+      "stats": {
+        "pace": 67.6,
+        "toPct": 15.4,
+        "toDefPct": 11.0,
+        "orPct": 26.1,
+        "drPct": 24.9,
+        "threeRate": 48.5,
+        "threeRateD": 27.9,
+        "threePct": 36.8,
+        "threePctD": 32.3,
+        "twoPct": 59.2,
+        "twoPctD": 45.5,
+        "ftr": 24.7,
+        "ftrDef": 16.0,
+        "ftPct": 78.8
+      }
     },
     {
-      "name": "Seed 14 (Midwest)",
+      "name": "Akron",
       "seed": 14,
       "region": "Midwest",
-      "stats": null
+      "stats": {
+        "pace": 66.8,
+        "toPct": 16.900000000000002,
+        "toDefPct": 16.7,
+        "orPct": 29.2,
+        "drPct": 25.6,
+        "threeRate": 41.6,
+        "threeRateD": 36.8,
+        "threePct": 31.7,
+        "threePctD": 30.7,
+        "twoPct": 54.7,
+        "twoPctD": 50.8,
+        "ftr": 32.7,
+        "ftrDef": 29.4,
+        "ftPct": 72.4
+      }
     },
     {
-      "name": "Seed 7 (Midwest)",
+      "name": "Texas",
       "seed": 7,
       "region": "Midwest",
-      "stats": null
+      "stats": {
+        "pace": 68.2,
+        "toPct": 16.900000000000002,
+        "toDefPct": 18.8,
+        "orPct": 29.9,
+        "drPct": 30.099999999999998,
+        "threeRate": 34.9,
+        "threeRateD": 32.9,
+        "threePct": 35.4,
+        "threePctD": 33.5,
+        "twoPct": 53.1,
+        "twoPctD": 47.0,
+        "ftr": 30.2,
+        "ftrDef": 34.0,
+        "ftPct": 75.7
+      }
     },
     {
-      "name": "Seed 10 (Midwest)",
+      "name": "Colorado St.",
       "seed": 10,
       "region": "Midwest",
-      "stats": null
+      "stats": {
+        "pace": 68.9,
+        "toPct": 15.4,
+        "toDefPct": 16.6,
+        "orPct": 24.6,
+        "drPct": 26.900000000000002,
+        "threeRate": 38.2,
+        "threeRateD": 33.7,
+        "threePct": 33.0,
+        "threePctD": 33.0,
+        "twoPct": 57.0,
+        "twoPctD": 48.0,
+        "ftr": 31.8,
+        "ftrDef": 31.7,
+        "ftPct": 75.2
+      }
     },
     {
-      "name": "Seed 2 (Midwest)",
+      "name": "Tennessee",
       "seed": 2,
       "region": "Midwest",
-      "stats": null
+      "stats": {
+        "pace": 70.2,
+        "toPct": 14.499999999999998,
+        "toDefPct": 18.5,
+        "orPct": 32.2,
+        "drPct": 28.199999999999996,
+        "threeRate": 41.2,
+        "threeRateD": 41.1,
+        "threePct": 34.4,
+        "threePctD": 31.2,
+        "twoPct": 50.8,
+        "twoPctD": 44.3,
+        "ftr": 33.7,
+        "ftrDef": 35.699999999999996,
+        "ftPct": 75.1
+      }
     },
     {
-      "name": "Seed 15 (Midwest)",
+      "name": "Saint Peter's",
       "seed": 15,
       "region": "Midwest",
-      "stats": null
+      "stats": {
+        "pace": 65.5,
+        "toPct": 19.2,
+        "toDefPct": 20.4,
+        "orPct": 34.5,
+        "drPct": 29.9,
+        "threeRate": 31.5,
+        "threeRateD": 34.9,
+        "threePct": 33.2,
+        "threePctD": 32.1,
+        "twoPct": 42.3,
+        "twoPctD": 46.6,
+        "ftr": 38.0,
+        "ftrDef": 42.5,
+        "ftPct": 71.8
+      }
     }
   ],
   "results": [
     [
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
+      0,
+      3,
+      4,
+      7,
+      9,
+      10,
+      12,
+      14,
+      16,
+      19,
+      21,
+      22,
+      25,
+      27,
+      29,
+      30,
+      32,
+      35,
+      37,
+      38,
+      40,
+      42,
+      44,
+      46,
+      48,
+      50,
+      52,
+      54,
+      57,
+      58,
+      60,
+      62
+    ],
+    [
+      0,
+      4,
+      10,
+      14,
+      16,
+      22,
+      25,
+      30,
+      32,
+      38,
+      40,
+      46,
+      48,
+      52,
+      58,
+      62
+    ],
+    [
+      0,
+      10,
+      22,
+      25,
+      38,
+      40,
+      48,
+      62
+    ],
+    [
+      0,
+      25,
+      38,
+      48
+    ],
+    [
+      48,
       null
     ],
     [
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null
-    ],
-    [
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null
-    ],
-    [
-      null,
-      null,
-      null,
-      null
-    ],
-    [
-      null,
-      null
-    ],
-    [
-      null
+      0
     ]
   ],
   "scores": [
     [
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
+      [
+        91,
+        52
+      ],
+      [
+        77,
+        65
+      ],
+      [
+        69,
+        65
+      ],
+      [
+        78,
+        76
+      ],
+      [
+        71,
+        67
+      ],
+      [
+        85,
+        69
+      ],
+      [
+        66,
+        61
+      ],
+      [
+        82,
+        65
+      ],
+      [
+        86,
+        46
+      ],
+      [
+        98,
+        83
+      ],
+      [
+        72,
+        61
+      ],
+      [
+        64,
+        47
+      ],
+      [
+        80,
+        67
+      ],
+      [
+        80,
+        76
+      ],
+      [
+        102,
+        100
+      ],
+      [
+        87,
+        69
+      ],
+      [
+        90,
+        62
+      ],
+      [
+        69,
+        51
+      ],
+      [
+        75,
+        66
+      ],
+      [
+        109,
+        96
+      ],
+      [
+        77,
+        56
+      ],
+      [
+        92,
+        67
+      ],
+      [
+        63,
+        60
+      ],
+      [
+        85,
+        65
+      ],
+      [
+        78,
+        50
+      ],
+      [
+        88,
+        72
+      ],
+      [
+        86,
+        65
+      ],
+      [
+        93,
+        89
+      ],
+      [
+        87,
+        73
+      ],
+      [
+        77,
+        60
+      ],
+      [
+        56,
+        44
+      ],
+      [
+        83,
+        49
+      ]
+    ],
+    [
+      [
+        75,
+        58
+      ],
+      [
+        85,
+        57
+      ],
+      [
+        89,
+        63
+      ],
+      [
+        67,
+        56
+      ],
+      [
+        100,
+        95
+      ],
+      [
+        93,
+        55
+      ],
+      [
+        79,
+        73
+      ],
+      [
+        81,
+        77
+      ],
+      [
+        85,
+        69
+      ],
+      [
+        72,
+        61
+      ],
+      [
+        72,
+        64
+      ],
+      [
+        78,
+        68
+      ],
+      [
+        106,
+        67
+      ],
+      [
+        89,
+        68
+      ],
+      [
+        86,
+        73
+      ],
+      [
+        62,
+        58
+      ]
+    ],
+    [
+      [
+        82,
+        52
+      ],
+      [
+        72,
+        69
+      ],
+      [
+        54,
+        51
+      ],
+      [
+        67,
+        58
+      ],
+      [
+        89,
+        87
+      ],
+      [
+        77,
+        72
+      ],
+      [
+        80,
+        68
+      ],
+      [
+        82,
+        75
+      ]
+    ],
+    [
+      [
+        77,
+        52
+      ],
+      [
+        76,
+        64
+      ],
+      [
+        89,
+        82
+      ],
+      [
+        72,
+        66
+      ]
+    ],
+    [
+      [
+        63,
+        50
+      ],
       null
     ],
     [
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null
-    ],
-    [
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null
-    ],
-    [
-      null,
-      null,
-      null,
-      null
-    ],
-    [
-      null,
-      null
-    ],
-    [
-      null
+      [
+        75,
+        60
+      ]
     ]
   ]
 }
