@@ -197,15 +197,20 @@ def parse_bracket(raw: dict) -> tuple[list[dict], dict, dict]:
         if section_map:
             break
 
-    # Collect all unique game objects keyed by bracketPositionId (deduplicates).
+    # Collect all game objects from the flat championships[0].games array.
+    # Avoid recursive walking (_collect_games) which can find duplicate/incomplete
+    # game objects nested inside other game fields and overwrite correct entries.
     all_games: dict[int, dict] = {}
-    for game in _collect_games(raw):
-        try:
-            bpid = int(game.get("bracketPositionId", 0))
-        except (TypeError, ValueError):
-            continue
-        if bpid > 0:
-            all_games[bpid] = game
+    for champ in raw.get("championships") or []:
+        for game in champ.get("games") or []:
+            try:
+                bpid = int(game.get("bracketPositionId", 0))
+            except (TypeError, ValueError):
+                continue
+            if bpid > 0:
+                all_games[bpid] = game
+        if all_games:
+            break
 
     # ── Round 1: derive canonical position from region + seed pair ──────────
     # Position = region_index * 8 + index_in_SEED_PAIR_ORDER
@@ -288,19 +293,6 @@ def parse_bracket(raw: dict) -> tuple[list[dict], dict, dict]:
 
     return teams_by_region, results, scores
 
-
-def _collect_games(node, depth=0) -> list[dict]:
-    """Recursively collect all game objects from the NCAA API response."""
-    games = []
-    if isinstance(node, dict):
-        if "teams" in node and isinstance(node["teams"], list):
-            games.append(node)
-        for v in node.values():
-            games.extend(_collect_games(v, depth + 1))
-    elif isinstance(node, list):
-        for item in node:
-            games.extend(_collect_games(item, depth + 1))
-    return games
 
 
 # ---------------------------------------------------------------------------
