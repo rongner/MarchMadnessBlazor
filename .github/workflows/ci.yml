@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [master]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   build:
     name: Build & publish
@@ -29,16 +34,32 @@ jobs:
 
       - name: Verify WASM artifacts
         run: |
-          test -f publish/wwwroot/_framework/blazor.webassembly.js \
-            || test -f publish/wwwroot/_framework/blazor.boot.json \
-            || ls publish/wwwroot/_framework/ | grep -q "blazor" \
+          ls publish/wwwroot/_framework/ | grep -q "blazor" \
             || (echo "Blazor WASM output missing" && exit 1)
           echo "WASM artifacts present"
-          ls publish/wwwroot/_framework/ | head -10
 
-      - name: Upload publish artifact
-        uses: actions/upload-artifact@v4
+      # Fix base href and add 404 fallback for GitHub Pages routing
+      - name: Prepare for GitHub Pages
+        run: |
+          sed -i 's|<base href="/" />|<base href="/MarchMadnessBlazor/" />|g' publish/wwwroot/index.html
+          cp publish/wwwroot/index.html publish/wwwroot/404.html
+          touch publish/wwwroot/.nojekyll
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: blazor-wasm
           path: publish/wwwroot/
-          retention-days: 7
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
