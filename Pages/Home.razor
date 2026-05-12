@@ -6,12 +6,20 @@
 @inject NavigationManager Nav
 @implements IDisposable
 
-<PageTitle>March Madness 2024</PageTitle>
+<PageTitle>March Madness @Svc.SelectedYear</PageTitle>
 
 <div class="bracket-page">
 
     <div class="bracket-toolbar">
-        <h1 class="bracket-title">NCAA March Madness 2024</h1>
+        <h1 class="bracket-title">NCAA March Madness</h1>
+
+        <select class="year-select" value="@Svc.SelectedYear" @onchange="OnYearChange">
+            @foreach (var y in TournamentDataService.AvailableYears.Reverse())
+            {
+                <option value="@y">@y</option>
+            }
+        </select>
+
         <div class="toolbar-actions">
             @if (!Svc.State.IsSimulated)
             {
@@ -20,6 +28,7 @@
             <button class="btn btn-reset" @onclick="Svc.Reset">Reset</button>
             <button class="btn btn-secondary" @onclick='() => Nav.NavigateTo("/settings")'>&#9881; Settings</button>
         </div>
+
         <div class="toolbar-score">
             @if (Svc.State.IsSimulated)
             {
@@ -31,6 +40,16 @@
                         <span>@BracketState.RoundNames[round]: @Svc.State.RoundScore(round)</span>
                     }
                 </div>
+                @if (Svc.HasActualResults)
+                {
+                    var (correct, total) = Svc.AccuracyVsActual();
+                    @if (total > 0)
+                    {
+                        <span class="accuracy-total">
+                            @correct / @total correct — @((correct * 100.0 / total).ToString("0.0"))%
+                        </span>
+                    }
+                }
             }
             else
             {
@@ -39,69 +58,102 @@
         </div>
     </div>
 
-    <div class="bracket-scroll">
-        <div class="bracket-wrapper">
+    @if (_loading)
+    {
+        <div class="loading-overlay">Loading @Svc.SelectedYear bracket…</div>
+    }
+    else
+    {
+        <div class="bracket-scroll">
+            <div class="bracket-wrapper">
 
-            <!-- Left half: East (top) + South (bottom) advancing right -->
-            <div class="bracket-half bracket-left">
-                <BracketRegion RegionIndex="0" />
-                <BracketRegion RegionIndex="1" />
-            </div>
-
-            <!-- Center: FF + Championship -->
-            <div class="bracket-center">
-                <div class="center-label">Final Four &amp; Championship</div>
-                <div class="center-games">
-
-                    <div class="ff-game">
-                        <div class="ff-label">East / South</div>
-                        @{ var (ff0t, ff0b) = Svc.State.GetGameTeams(Svc.State.UserPicks, 5, 0); }
-                        <GameSlot TopTeam=@ff0t BottomTeam=@ff0b
-                                  UserWinner=@Svc.State.UserPicks[5][0]
-                                  SimWinner=@Svc.State.SimResults[5][0]
-                                  IsSimulated=@Svc.State.IsSimulated
-                                  OnPick=@(t => Svc.Pick(5, 0, t)) />
-                    </div>
-
-                    <div class="ff-game championship">
-                        <div class="ff-label">&#127942; Championship</div>
-                        @{ var (cht, chb) = Svc.State.GetGameTeams(Svc.State.UserPicks, 6, 0); }
-                        <GameSlot TopTeam=@cht BottomTeam=@chb
-                                  UserWinner=@Svc.State.UserPicks[6][0]
-                                  SimWinner=@Svc.State.SimResults[6][0]
-                                  IsSimulated=@Svc.State.IsSimulated
-                                  OnPick=@(t => Svc.Pick(6, 0, t)) />
-                        @if (Svc.State.IsSimulated && Svc.State.SimResults[6][0] != null)
-                        {
-                            <div class="champion-banner">&#127942; @Svc.State.SimResults[6][0]!.Name</div>
-                        }
-                    </div>
-
-                    <div class="ff-game">
-                        <div class="ff-label">West / Midwest</div>
-                        @{ var (ff1t, ff1b) = Svc.State.GetGameTeams(Svc.State.UserPicks, 5, 1); }
-                        <GameSlot TopTeam=@ff1t BottomTeam=@ff1b
-                                  UserWinner=@Svc.State.UserPicks[5][1]
-                                  SimWinner=@Svc.State.SimResults[5][1]
-                                  IsSimulated=@Svc.State.IsSimulated
-                                  OnPick=@(t => Svc.Pick(5, 1, t)) />
-                    </div>
-
+                <!-- Left half: East (top) + South (bottom) advancing right -->
+                <div class="bracket-half bracket-left">
+                    <BracketRegion RegionIndex="0" />
+                    <BracketRegion RegionIndex="1" />
                 </div>
-            </div>
 
-            <!-- Right half: West (top) + Midwest (bottom) advancing left (reversed columns) -->
-            <div class="bracket-half bracket-right">
-                <BracketRegion RegionIndex="2" Reversed="true" />
-                <BracketRegion RegionIndex="3" Reversed="true" />
-            </div>
+                <!-- Center: FF + Championship -->
+                <div class="bracket-center">
+                    <div class="center-label">Final Four &amp; Championship</div>
+                    <div class="center-games">
 
+                        <div class="ff-game">
+                            <div class="ff-label">East / South</div>
+                            @{ var (ff0t, ff0b) = Svc.State.GetGameTeams(Svc.State.UserPicks, 5, 0); }
+                            <GameSlot TopTeam=@ff0t BottomTeam=@ff0b
+                                      UserWinner=@Svc.State.UserPicks[5][0]
+                                      SimWinner=@Svc.State.SimResults[5][0]
+                                      ActualWinner=@Svc.GetActualWinner(5, 0)
+                                      ActualScore=@Svc.GetActualScore(5, 0)
+                                      IsSimulated=@Svc.State.IsSimulated
+                                      OnPick=@(t => Svc.Pick(5, 0, t)) />
+                        </div>
+
+                        <div class="ff-game championship">
+                            <div class="ff-label">&#127942; Championship</div>
+                            @{ var (cht, chb) = Svc.State.GetGameTeams(Svc.State.UserPicks, 6, 0); }
+                            <GameSlot TopTeam=@cht BottomTeam=@chb
+                                      UserWinner=@Svc.State.UserPicks[6][0]
+                                      SimWinner=@Svc.State.SimResults[6][0]
+                                      ActualWinner=@Svc.GetActualWinner(6, 0)
+                                      ActualScore=@Svc.GetActualScore(6, 0)
+                                      IsSimulated=@Svc.State.IsSimulated
+                                      OnPick=@(t => Svc.Pick(6, 0, t)) />
+                            @if (Svc.State.IsSimulated && Svc.State.SimResults[6][0] != null)
+                            {
+                                <div class="champion-banner">&#127942; @Svc.State.SimResults[6][0]!.Name</div>
+                            }
+                        </div>
+
+                        <div class="ff-game">
+                            <div class="ff-label">West / Midwest</div>
+                            @{ var (ff1t, ff1b) = Svc.State.GetGameTeams(Svc.State.UserPicks, 5, 1); }
+                            <GameSlot TopTeam=@ff1t BottomTeam=@ff1b
+                                      UserWinner=@Svc.State.UserPicks[5][1]
+                                      SimWinner=@Svc.State.SimResults[5][1]
+                                      ActualWinner=@Svc.GetActualWinner(5, 1)
+                                      ActualScore=@Svc.GetActualScore(5, 1)
+                                      IsSimulated=@Svc.State.IsSimulated
+                                      OnPick=@(t => Svc.Pick(5, 1, t)) />
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Right half: West (top) + Midwest (bottom) advancing left (reversed columns) -->
+                <div class="bracket-half bracket-right">
+                    <BracketRegion RegionIndex="2" Reversed="true" />
+                    <BracketRegion RegionIndex="3" Reversed="true" />
+                </div>
+
+            </div>
         </div>
-    </div>
+    }
 
 </div>
 
 @code {
+    private bool _loading = false;
+
     protected override void OnInitialized() => Svc.OnChange += StateHasChanged;
-    public void Dispose()                   => Svc.OnChange -= StateHasChanged;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Try to load JSON data for the default year; fall back to hardcoded if unavailable.
+        _loading = true;
+        await Svc.LoadYearAsync(Svc.SelectedYear);
+        _loading = false;
+    }
+
+    private async Task OnYearChange(ChangeEventArgs e)
+    {
+        if (!int.TryParse(e.Value?.ToString(), out int year)) return;
+        _loading = true;
+        StateHasChanged();
+        await Svc.LoadYearAsync(year);
+        _loading = false;
+    }
+
+    public void Dispose() => Svc.OnChange -= StateHasChanged;
 }

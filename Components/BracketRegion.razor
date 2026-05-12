@@ -17,6 +17,8 @@
                     var (top, bottom) = Svc.State.GetGameTeams(Svc.State.UserPicks, col.GlobalRound, globalPos);
                     var userWinner    = Svc.State.UserPicks[col.GlobalRound][globalPos];
                     var simWinner     = Svc.State.SimResults[col.GlobalRound][globalPos];
+                    var actualWinner  = Svc.GetActualWinner(col.GlobalRound, globalPos);
+                    var actualScore   = Svc.GetActualScore(col.GlobalRound, globalPos);
                     var topPx         = GameTopPx(col.RegionRound, gameIdx);
 
                     <div style="position: absolute; top: @(topPx)px; width: 100%;">
@@ -24,6 +26,8 @@
                                   BottomTeam=@bottom
                                   UserWinner=@userWinner
                                   SimWinner=@simWinner
+                                  ActualWinner=@actualWinner
+                                  ActualScore=@actualScore
                                   IsSimulated=@Svc.State.IsSimulated
                                   OnPick=@(t => Svc.Pick(col.GlobalRound, globalPos, t)) />
                     </div>

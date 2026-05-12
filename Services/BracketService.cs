@@ -2,14 +2,63 @@ using MarchMadnessBlazor.Models;
 
 namespace MarchMadnessBlazor.Services;
 
-public class BracketService
+public class BracketService(TournamentDataService dataService)
 {
     private readonly Random _rng = new();
 
     public BracketState State { get; private set; } = new(TournamentData.GetInitialSeeding());
     public SimulationSettings Settings { get; set; } = new();
+    public int SelectedYear { get; private set; } = 2024;
+    public TournamentYear? CurrentYear { get; private set; }
+    public bool HasActualResults => CurrentYear != null;
 
     public event Action? OnChange;
+
+    public async Task LoadYearAsync(int year)
+    {
+        SelectedYear = year;
+        var loaded = await dataService.LoadAsync(year);
+        if (loaded != null)
+        {
+            CurrentYear = loaded;
+            State = new BracketState(loaded.Teams);
+        }
+        else
+        {
+            CurrentYear = null;
+            State = new BracketState(TournamentData.GetInitialSeeding());
+        }
+        NotifyChanged();
+    }
+
+    public Team? GetActualWinner(int round, int pos)
+    {
+        if (CurrentYear == null) return null;
+        var id = CurrentYear.ActualResults[round][pos];
+        if (id == null || id.Value >= CurrentYear.Teams.Length) return null;
+        return CurrentYear.Teams[id.Value];
+    }
+
+    public GameScore? GetActualScore(int round, int pos) =>
+        CurrentYear?.Scores[round][pos];
+
+    public (int Correct, int Total) AccuracyVsActual()
+    {
+        if (!State.IsSimulated || CurrentYear == null) return (0, 0);
+        int correct = 0, total = 0;
+        for (int r = 1; r <= 6; r++)
+        {
+            int count = 64 >> r;
+            for (int p = 0; p < count; p++)
+            {
+                var actualId = CurrentYear.ActualResults[r][p];
+                if (actualId == null) continue;
+                total++;
+                if (State.SimResults[r][p]?.Id == actualId.Value) correct++;
+            }
+        }
+        return (correct, total);
+    }
 
     public void Pick(int round, int position, Team team)
     {
@@ -18,11 +67,9 @@ public class BracketService
         NotifyChanged();
     }
 
-    // Fill any unpicked games then run the simulation.
     public void Simulate()
     {
         if (State.IsSimulated) return;
-        // Auto-fill any missing user picks.
         for (int r = 1; r <= 6; r++)
         {
             int count = 64 >> r;
@@ -34,7 +81,6 @@ public class BracketService
                     State.UserPicks[r][p] = WeightedPick(top, bottom);
             }
         }
-        // Simulate actual tournament results.
         for (int r = 1; r <= 6; r++)
         {
             int count = 64 >> r;
@@ -51,7 +97,7 @@ public class BracketService
 
     public void Reset()
     {
-        State = new BracketState(TournamentData.GetInitialSeeding());
+        State = new BracketState(CurrentYear?.Teams ?? TournamentData.GetInitialSeeding());
         NotifyChanged();
     }
 
@@ -63,8 +109,6 @@ public class BracketService
         _              => SeededPick(top, bottom),
     };
 
-    // P(top wins) = bottom.Seed^k / (top.Seed^k + bottom.Seed^k); k=SeedInfluence.
-    // k=1 → proportional to seed gap; k>1 → favourites win more; k<1 → more upsets.
     private Team SeededPick(Team top, Team bottom)
     {
         double k    = Settings.SeedInfluence;
@@ -73,44 +117,28 @@ public class BracketService
         return _rng.NextDouble() < wTop / (wTop + wBot) ? top : bottom;
     }
 
-    // Possession-chain model — fully deterministic, higher expected score wins.
     private static Team StatsPick(Team top, Team bottom)
     {
         if (top.Stats == null || bottom.Stats == null)
-            return top.Seed <= bottom.Seed ? top : bottom; // fall back to chalk
-
-        double scoreA = ExpectedScore(top.Stats,    bottom.Stats);
-        double scoreB = ExpectedScore(bottom.Stats, top.Stats);
-        return scoreA >= scoreB ? top : bottom;
+            return top.Seed <= bottom.Seed ? top : bottom;
+        return ExpectedScore(top.Stats, bottom.Stats) >= ExpectedScore(bottom.Stats, top.Stats)
+            ? top : bottom;
     }
 
     private static double ExpectedScore(TeamStats a, TeamStats b)
     {
-        // Step 1: base possessions = avg pace of the two teams.
-        double basePoss = (a.Pace + b.Pace) / 2.0;
-
-        // Step 2: turnovers (rates are 0-100; convert to 0-1).
-        double toRate         = (a.ToPct / 100.0 + b.ToDefPct / 100.0) / 2.0;
-        double shootingPoss   = basePoss * (1.0 - toRate);
-
-        // Step 3: shot mix and effective shooting percentages.
-        double threeRate      = (a.ThreeRate  / 100.0 + b.ThreeRateD / 100.0) / 2.0;
-        double threePct       = (a.ThreePct   / 100.0 + b.ThreePctD  / 100.0) / 2.0;
-        double twoPct         = (a.TwoPct     / 100.0 + b.TwoPctD    / 100.0) / 2.0;
-
-        // Step 4: offensive rebounds extend possessions.
-        double missRate       = threeRate * (1.0 - threePct) + (1.0 - threeRate) * (1.0 - twoPct);
-        double orbRate        = (a.OrPct / 100.0 + (1.0 - b.DrPct / 100.0)) / 2.0;
-        double totalPoss      = shootingPoss * (1.0 + orbRate * missRate);
-
-        // Step 5: field goal points per possession.
-        double ptsPer         = threeRate * threePct * 3.0 + (1.0 - threeRate) * twoPct * 2.0;
-
-        // Step 6: free throw points per possession.
-        // FTR is FTA/FGA × 100; convert to FTA per shooting possession then to points.
-        double ftrA           = (a.Ftr    / 100.0 + b.FtrDef / 100.0) / 2.0;
-        double ftPts          = ftrA * (a.FtPct / 100.0); // ~1 pt per FTA attempt drawn
-
+        double basePoss     = (a.Pace + b.Pace) / 2.0;
+        double toRate       = (a.ToPct / 100.0 + b.ToDefPct / 100.0) / 2.0;
+        double shootingPoss = basePoss * (1.0 - toRate);
+        double threeRate    = (a.ThreeRate  / 100.0 + b.ThreeRateD / 100.0) / 2.0;
+        double threePct     = (a.ThreePct   / 100.0 + b.ThreePctD  / 100.0) / 2.0;
+        double twoPct       = (a.TwoPct     / 100.0 + b.TwoPctD    / 100.0) / 2.0;
+        double missRate     = threeRate * (1.0 - threePct) + (1.0 - threeRate) * (1.0 - twoPct);
+        double orbRate      = (a.OrPct / 100.0 + (1.0 - b.DrPct / 100.0)) / 2.0;
+        double totalPoss    = shootingPoss * (1.0 + orbRate * missRate);
+        double ptsPer       = threeRate * threePct * 3.0 + (1.0 - threeRate) * twoPct * 2.0;
+        double ftrA         = (a.Ftr / 100.0 + b.FtrDef / 100.0) / 2.0;
+        double ftPts        = ftrA * (a.FtPct / 100.0);
         return totalPoss * (ptsPer + ftPts);
     }
 
