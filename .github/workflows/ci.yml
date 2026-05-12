@@ -30,7 +30,7 @@ jobs:
         run: dotnet build --no-restore --configuration Release
 
       - name: Publish
-        run: dotnet publish --no-build --configuration Release --output publish/
+        run: dotnet publish --configuration Release --output publish/
 
       - name: Verify WASM artifacts
         run: |
