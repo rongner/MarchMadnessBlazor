@@ -1,0 +1,104 @@
+@page "/settings"
+@using MarchMadnessBlazor.Models
+@using MarchMadnessBlazor.Services
+@inject BracketService Svc
+@inject NavigationManager Nav
+
+<PageTitle>Simulation Settings</PageTitle>
+
+<div class="settings-page">
+
+    <div class="settings-header">
+        <button class="btn btn-back" @onclick='() => Nav.NavigateTo("/")'>&#8592; Back to Bracket</button>
+        <h1 class="settings-title">Simulation Settings</h1>
+    </div>
+
+    <div class="settings-body">
+
+        <div class="setting-group">
+            <div class="setting-label">Simulation Mode</div>
+            <div class="mode-options">
+                @foreach (SimMode mode in Enum.GetValues<SimMode>())
+                {
+                    var m = mode;
+                    <label class="mode-option @(_s.Mode == m ? "mode-selected" : "")"
+                           @onclick="() => SetMode(m)">
+                        <div class="mode-radio">
+                            <div class="mode-radio-dot @(_s.Mode == m ? "dot-on" : "")"></div>
+                        </div>
+                        <div class="mode-text">
+                            <span class="mode-name">@ModeName(m)</span>
+                            <span class="mode-desc">@ModeDesc(m)</span>
+                        </div>
+                    </label>
+                }
+            </div>
+        </div>
+
+        @if (_s.Mode == SimMode.Seeded)
+        {
+            <div class="setting-group">
+                <div class="setting-label">Seed Influence
+                    <span class="setting-value">@_s.SeedInfluence.ToString("0.0")×</span>
+                </div>
+                <div class="slider-row">
+                    <span class="slider-end">Chaotic</span>
+                    <input type="range" class="influence-slider"
+                           min="0.3" max="3.0" step="0.1"
+                           value="@_s.SeedInfluence"
+                           @oninput="OnSlider" />
+                    <span class="slider-end">Predictable</span>
+                </div>
+                <div class="slider-ticks">
+                    <span>0.3</span>
+                    <span>1.0 (default)</span>
+                    <span>3.0</span>
+                </div>
+                <p class="setting-hint">
+                    Higher values make lower seeds (favourites) win more often.
+                    Lower values produce more upsets.
+                </p>
+            </div>
+        }
+
+    </div>
+
+</div>
+
+@code {
+    private SimulationSettings _s = new();
+
+    protected override void OnInitialized() => _s = Svc.Settings;
+
+    private void SetMode(SimMode mode)
+    {
+        _s = _s with { Mode = mode };
+        Svc.Settings = _s;
+    }
+
+    private void OnSlider(ChangeEventArgs e)
+    {
+        if (double.TryParse(e.Value?.ToString(), System.Globalization.NumberStyles.Float,
+                            System.Globalization.CultureInfo.InvariantCulture, out double v))
+        {
+            _s = _s with { SeedInfluence = v };
+            Svc.Settings = _s;
+        }
+    }
+
+    private static string ModeName(SimMode m) => m switch
+    {
+        SimMode.Random => "Random",
+        SimMode.Seeded => "Seed-Weighted",
+        SimMode.Chalk  => "Chalk",
+        _              => m.ToString(),
+    };
+
+    private static string ModeDesc(SimMode m) => m switch
+    {
+        SimMode.Random => "50 / 50 — any team can win regardless of seeding",
+        SimMode.Seeded => "Favourites win more often; upsets still happen (default)",
+        SimMode.Chalk  => "Always advance the lower (better) seed — no upsets",
+        _              => "",
+    };
+}

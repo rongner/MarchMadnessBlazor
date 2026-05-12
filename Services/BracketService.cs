@@ -7,6 +7,7 @@ public class BracketService
     private readonly Random _rng = new();
 
     public BracketState State { get; private set; } = new(TournamentData.GetInitialSeeding());
+    public SimulationSettings Settings { get; set; } = new();
 
     public event Action? OnChange;
 
@@ -17,10 +18,11 @@ public class BracketService
         NotifyChanged();
     }
 
-    // Fill all remaining empty user picks using seeding-weighted random.
-    public void AutoFill()
+    // Fill any unpicked games then run the simulation.
+    public void Simulate()
     {
         if (State.IsSimulated) return;
+        // Auto-fill any missing user picks.
         for (int r = 1; r <= 6; r++)
         {
             int count = 64 >> r;
@@ -32,12 +34,7 @@ public class BracketService
                     State.UserPicks[r][p] = WeightedPick(top, bottom);
             }
         }
-        NotifyChanged();
-    }
-
-    // Simulate the actual tournament results (independent of user picks).
-    public void Simulate()
-    {
+        // Simulate actual tournament results.
         for (int r = 1; r <= 6; r++)
         {
             int count = 64 >> r;
@@ -58,11 +55,21 @@ public class BracketService
         NotifyChanged();
     }
 
-    // P(top wins) = bottom.Seed / (top.Seed + bottom.Seed) — higher seed favoured.
-    private Team WeightedPick(Team top, Team bottom)
+    private Team WeightedPick(Team top, Team bottom) => Settings.Mode switch
     {
-        double pTop = (double)bottom.Seed / (top.Seed + bottom.Seed);
-        return _rng.NextDouble() < pTop ? top : bottom;
+        SimMode.Random => _rng.NextDouble() < 0.5 ? top : bottom,
+        SimMode.Chalk  => top.Seed <= bottom.Seed ? top : bottom,
+        _              => SeededPick(top, bottom),
+    };
+
+    // P(top wins) = bottom.Seed^k / (top.Seed^k + bottom.Seed^k); k=SeedInfluence.
+    // k=1 → proportional to seed gap; k>1 → favourites win more; k<1 → more upsets.
+    private Team SeededPick(Team top, Team bottom)
+    {
+        double k    = Settings.SeedInfluence;
+        double wTop = Math.Pow(bottom.Seed, k);
+        double wBot = Math.Pow(top.Seed, k);
+        return _rng.NextDouble() < wTop / (wTop + wBot) ? top : bottom;
     }
 
     private void NotifyChanged() => OnChange?.Invoke();

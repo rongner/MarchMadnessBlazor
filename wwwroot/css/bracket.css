@@ -226,3 +226,136 @@ body {
     text-align: center;
     white-space: nowrap;
 }
+
+/* ── Settings page ── */
+.settings-page {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+
+.settings-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.settings-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-bright);
+    margin: 0;
+}
+
+.btn-back {
+    background: transparent;
+    color: var(--accent2);
+    border-color: transparent;
+    padding: 0.35rem 0.6rem;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+.btn-back:hover { color: var(--text-bright); }
+
+.settings-body { display: flex; flex-direction: column; gap: 2rem; }
+
+.setting-group {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+}
+
+.setting-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.setting-value {
+    color: var(--accent2);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.mode-options { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.mode-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+}
+.mode-option:hover         { background: var(--surface2); }
+.mode-option.mode-selected { border-color: var(--accent); background: rgba(31,111,235,0.08); }
+
+.mode-radio {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--border);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.15s;
+}
+.mode-option.mode-selected .mode-radio { border-color: var(--accent2); }
+
+.mode-radio-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: transparent;
+    transition: background 0.15s;
+}
+.dot-on { background: var(--accent2); }
+
+.mode-text { display: flex; flex-direction: column; gap: 0.2rem; }
+.mode-name { font-size: 0.9rem; font-weight: 600; color: var(--text-bright); }
+.mode-desc { font-size: 0.78rem; color: var(--text-dim); }
+
+.slider-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.3rem;
+}
+
+.influence-slider {
+    flex: 1;
+    accent-color: var(--accent2);
+    cursor: pointer;
+}
+
+.slider-end { font-size: 0.75rem; color: var(--text-dim); white-space: nowrap; }
+
+.slider-ticks {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.68rem;
+    color: var(--text-dim);
+    padding: 0 0.1rem;
+    margin-bottom: 0.75rem;
+}
+
+.setting-hint {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin: 0;
+    line-height: 1.5;
+}

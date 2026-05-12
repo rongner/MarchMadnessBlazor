@@ -3,6 +3,7 @@
 @using MarchMadnessBlazor.Services
 @using MarchMadnessBlazor.Components
 @inject BracketService Svc
+@inject NavigationManager Nav
 @implements IDisposable
 
 <PageTitle>March Madness 2024</PageTitle>
@@ -14,14 +15,10 @@
         <div class="toolbar-actions">
             @if (!Svc.State.IsSimulated)
             {
-                <button class="btn btn-secondary" @onclick="Svc.AutoFill">Auto-fill Bracket</button>
-                <button class="btn btn-primary"
-                        disabled="@(Svc.State.PicksComplete() < 63)"
-                        @onclick="Svc.Simulate">
-                    Simulate Tournament
-                </button>
+                <button class="btn btn-primary" @onclick="Svc.Simulate">Simulate</button>
             }
             <button class="btn btn-reset" @onclick="Svc.Reset">Reset</button>
+            <button class="btn btn-secondary" @onclick='() => Nav.NavigateTo("/settings")'>&#9881; Settings</button>
         </div>
         <div class="toolbar-score">
             @if (Svc.State.IsSimulated)
@@ -37,7 +34,7 @@
             }
             else
             {
-                <span class="picks-progress">@Svc.State.PicksComplete() / 63 picks made</span>
+                <span class="picks-progress">@Svc.State.PicksComplete() / 63 picks made — or click Simulate to run instantly</span>
             }
         </div>
     </div>
