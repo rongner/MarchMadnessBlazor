@@ -165,50 +165,113 @@ def parse_bracket(raw: dict) -> tuple[list[dict], dict, dict]:
       teams_by_region: {region: {seed: name}}
       results[round][pos] = winning team name  (round 1-indexed, pos 0-indexed)
       scores[round][pos]  = (winner_score, loser_score)
+
+    bracketPositionId encoding (NCAA API):
+      R1: 201-232, R2: 301-316, R3: 401-408, R4: 501-504, R5: 601-602, R6: 701
+      round = bpid // 100 - 1,  raw_pos = bpid % 100 - 1
+
+    sectionId is numeric: 2=East, 3=South, 4=West, 5=Midwest (from regions array,
+    not the empty sections array).
     """
+    # Build sectionId (int) → region name from championships[0].regions[].
+    section_map: dict[int, str] = {}
+    for champ in raw.get("championships") or []:
+        for region in champ.get("regions") or []:
+            try:
+                sid = int(region.get("sectionId", 0))
+            except (TypeError, ValueError):
+                continue
+            title = (region.get("title") or "").upper()
+            for r in REGIONS_ORDER:
+                if r.upper() == title:
+                    section_map[sid] = r
+                    break
+        if section_map:
+            break
+
+    # Collect all unique game objects keyed by bracketPositionId (deduplicates).
+    all_games: dict[int, dict] = {}
+    for game in _collect_games(raw):
+        try:
+            bpid = int(game.get("bracketPositionId", 0))
+        except (TypeError, ValueError):
+            continue
+        if bpid > 0:
+            all_games[bpid] = game
+
+    # ── Round 1: derive canonical position from region + seed pair ──────────
+    # Position = region_index * 8 + index_in_SEED_PAIR_ORDER
+    bpid_to_pos: dict[int, int] = {}
+
+    for bpid, game in sorted(all_games.items()):
+        if bpid // 100 - 1 != 1:
+            continue
+        game_teams = game.get("teams") or []
+        if len(game_teams) != 2:
+            continue
+        try:
+            sid = int(game.get("sectionId", 0))
+        except (TypeError, ValueError):
+            continue
+        region_name = section_map.get(sid)
+        if region_name is None:
+            continue
+        seeds = sorted(t.get("seed", 0) for t in game_teams)
+        pair_idx = next(
+            (i for i, (h, l) in enumerate(SEED_PAIR_ORDER) if sorted([h, l]) == seeds),
+            None,
+        )
+        if pair_idx is None:
+            continue
+        bpid_to_pos[bpid] = REGIONS_ORDER.index(region_name) * 8 + pair_idx
+
+    # ── Rounds 2-6: follow victorBracketPositionId back to R1 positions ─────
+    # Each game's canonical position = min(feeder canonical positions) // 2
+    for target_rnd in range(2, 7):
+        for bpid, game in sorted(all_games.items()):
+            if bpid // 100 - 1 != target_rnd:
+                continue
+            feeders = [
+                fp for fp, fg in all_games.items()
+                if fg.get("victorBracketPositionId") == bpid and fp in bpid_to_pos
+            ]
+            if feeders:
+                bpid_to_pos[bpid] = min(bpid_to_pos[fp] for fp in feeders) // 2
+
+    # ── Extract teams, results, scores ──────────────────────────────────────
     teams_by_region: dict[str, dict[int, str]] = {r: {} for r in REGIONS_ORDER}
     results: dict[int, dict[int, str]] = {r: {} for r in range(1, 7)}
     scores:  dict[int, dict[int, tuple]] = {r: {} for r in range(1, 7)}
 
-    # The NCAA API returns a nested structure.  We walk every game object we
-    # can find, keying on bracketPositionId to infer round + position.
-    games = _collect_games(raw)
-
-    for game in games:
-        teams = game.get("teams", [])
-        if len(teams) != 2:
+    for bpid, game in all_games.items():
+        rnd = bpid // 100 - 1
+        if rnd < 1 or rnd > 6:
             continue
-
-        # Determine round from number of games that could have preceded this.
-        # bracketPositionId is 1-based and encodes position across all rounds.
-        # Round 1: positions 1-32, Round 2: 33-48, etc. (NCAA layout varies by year).
-        # We derive round from round_number or title metadata if available.
-        rnd = _infer_round(game)
-        if rnd is None or rnd < 1 or rnd > 6:
-            continue
-
-        pos = _infer_position(game, rnd)
+        pos = bpid_to_pos.get(bpid)
         if pos is None:
             continue
 
-        # Populate teams_by_region from round-1 games (seeds are reliable there).
-        if rnd == 1:
-            for t in teams:
-                region = _infer_region(game)
-                if region:
-                    seed = t.get("seed", 0)
-                    name = t.get("nameShort", t.get("nameFull", ""))
-                    if seed and name:
-                        teams_by_region[region][seed] = name
+        game_teams = game.get("teams") or []
 
-        # Record result if the game has a winner.
-        winner = next((t for t in teams if t.get("isWinner")), None)
-        loser  = next((t for t in teams if not t.get("isWinner")), None)
+        if rnd == 1:
+            try:
+                sid = int(game.get("sectionId", 0))
+            except (TypeError, ValueError):
+                sid = 0
+            region_name = section_map.get(sid)
+            if region_name:
+                for t in game_teams:
+                    seed = t.get("seed", 0)
+                    name = t.get("nameShort") or t.get("nameFull") or ""
+                    if seed and name:
+                        teams_by_region[region_name][seed] = name
+
+        winner = next((t for t in game_teams if t.get("isWinner")), None)
+        loser  = next((t for t in game_teams if not t.get("isWinner")), None)
         if winner:
-            results[rnd][pos] = winner.get("nameShort", winner.get("nameFull", ""))
+            results[rnd][pos] = winner.get("nameShort") or winner.get("nameFull") or ""
         if winner and loser:
-            ws = winner.get("score")
-            ls = loser.get("score")
+            ws, ls = winner.get("score"), loser.get("score")
             if ws is not None and ls is not None:
                 try:
                     scores[rnd][pos] = (int(ws), int(ls))
@@ -230,55 +293,6 @@ def _collect_games(node, depth=0) -> list[dict]:
         for item in node:
             games.extend(_collect_games(item, depth + 1))
     return games
-
-
-def _infer_round(game: dict) -> int | None:
-    # Try explicit round field first.
-    for key in ("roundNumber", "round", "roundNum"):
-        if key in game:
-            try:
-                return int(game[key])
-            except (TypeError, ValueError):
-                pass
-    # Fall back to bracketPositionId ranges (NCAA D1 men's basketball layout).
-    # Round 1: 1–32, Round 2: 33–48, Round 3: 49–56, Round 4: 57–60,
-    # Round 5: 61–62, Round 6: 63.
-    bpid = game.get("bracketPositionId")
-    if bpid is None:
-        return None
-    try:
-        bpid = int(bpid)
-    except (TypeError, ValueError):
-        return None
-    if   bpid <= 32: return 1
-    elif bpid <= 48: return 2
-    elif bpid <= 56: return 3
-    elif bpid <= 60: return 4
-    elif bpid <= 62: return 5
-    else:            return 6
-
-
-def _infer_position(game: dict, rnd: int) -> int | None:
-    bpid = game.get("bracketPositionId")
-    if bpid is None:
-        return None
-    try:
-        bpid = int(bpid)
-    except (TypeError, ValueError):
-        return None
-    # Convert bracketPositionId to 0-indexed position within the round.
-    offsets = {1: 0, 2: 32, 3: 48, 4: 56, 5: 60, 6: 62}
-    offset = offsets.get(rnd, 0)
-    return bpid - offset - 1
-
-
-def _infer_region(game: dict) -> str | None:
-    raw = game.get("sectionId") or game.get("region") or game.get("regionName") or ""
-    raw = str(raw).strip().title()
-    for r in REGIONS_ORDER:
-        if r in raw:
-            return r
-    return None
 
 
 # ---------------------------------------------------------------------------
@@ -410,7 +424,10 @@ def main():
             print(f"  Fetching NCAA bracket …")
             raw_bracket = fetch_ncaa_bracket(year)
             teams_by_region, results, scores = parse_bracket(raw_bracket)
-            print(f"    regions: {[r for r in REGIONS_ORDER if teams_by_region.get(r)]}")
+            team_counts = {r: len(t) for r, t in teams_by_region.items()}
+            result_counts = {r: len(v) for r, v in results.items() if v}
+            print(f"    teams per region: {team_counts}")
+            print(f"    results per round: {result_counts}")
             time.sleep(2)
 
             tournament = build_tournament(year, bart, pace, teams_by_region, results, scores)
