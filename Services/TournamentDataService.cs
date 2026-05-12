@@ -5,7 +5,7 @@ namespace MarchMadnessBlazor.Services;
 
 public class TournamentDataService(HttpClient http)
 {
-    public static readonly int[] AvailableYears = [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024];
+    public static readonly int[] AvailableYears = [2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024]; // 2020: no tournament
 
     private readonly Dictionary<int, TournamentYear> _cache = [];
 
@@ -13,7 +13,15 @@ public class TournamentDataService(HttpClient http)
     {
         if (_cache.TryGetValue(year, out var cached)) return cached;
 
-        var dto = await http.GetFromJsonAsync<TournamentYearDto>($"data/tournament-{year}.json");
+        TournamentYearDto? dto;
+        try
+        {
+            dto = await http.GetFromJsonAsync<TournamentYearDto>($"data/tournament-{year}.json");
+        }
+        catch
+        {
+            return null;
+        }
         if (dto == null) return null;
 
         var result = dto.ToModel();

@@ -1,6 +1,7 @@
 @using MarchMadnessBlazor.Models
 @using MarchMadnessBlazor.Services
 @inject BracketService Svc
+@implements IDisposable
 
 @* Renders one region as 4 round-columns with proper vertical spacing.
    RegionIndex: 0=East, 1=South, 2=West, 3=Midwest
@@ -40,6 +41,9 @@
 @code {
     [Parameter, EditorRequired] public int RegionIndex { get; set; }
     [Parameter] public bool Reversed { get; set; }
+
+    protected override void OnInitialized() => Svc.OnChange += StateHasChanged;
+    public void Dispose() => Svc.OnChange -= StateHasChanged;
 
     private const double GameH   = 60.0;   // px — height of one game slot
     private const int    ColW    = 155;    // px — column width
