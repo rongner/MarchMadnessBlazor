@@ -61,6 +61,28 @@
             </div>
         }
 
+        @if (_s.Mode == SimMode.Stats)
+        {
+            <div class="setting-group stats-notice @(Svc.HasActualResults ? "notice-ok" : "notice-warn")">
+                @if (Svc.HasActualResults)
+                {
+                    <span class="notice-icon">&#10003;</span>
+                    <div>
+                        <strong>@Svc.SelectedYear stats loaded</strong>
+                        <p class="setting-hint">The possession-chain model will use real team stats. After simulating, accuracy is compared against actual results.</p>
+                    </div>
+                }
+                else
+                {
+                    <span class="notice-icon">&#9888;</span>
+                    <div>
+                        <strong>No stats data loaded</strong>
+                        <p class="setting-hint">Stats mode requires tournament data files in <code>wwwroot/data/</code>. Run the CI fetch job or <code>python scripts/fetch_tournament_data.py</code> to generate them. Until then, Stats mode falls back to Chalk.</p>
+                    </div>
+                }
+            </div>
+        }
+
     </div>
 
 </div>

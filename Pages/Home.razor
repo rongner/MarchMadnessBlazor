@@ -11,7 +11,7 @@
 <div class="bracket-page">
 
     <div class="bracket-toolbar">
-        <h1 class="bracket-title">NCAA March Madness</h1>
+        <h1 class="bracket-title">NCAA March Madness @Svc.SelectedYear</h1>
 
         <select class="year-select" value="@Svc.SelectedYear" @onchange="OnYearChange">
             @foreach (var y in TournamentDataService.AvailableYears.Reverse())
