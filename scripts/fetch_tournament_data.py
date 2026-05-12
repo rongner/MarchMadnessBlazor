@@ -28,7 +28,7 @@ from bs4 import BeautifulSoup
 # Config
 # ---------------------------------------------------------------------------
 
-YEARS = [y for y in range(2015, 2025) if y != 2020]  # 2020: no tournament (COVID)
+YEARS = [y for y in range(2015, 2027) if y != 2020]  # 2020: no tournament (COVID)
 
 OUT_DIR = Path(__file__).parent.parent / "wwwroot" / "data"
 

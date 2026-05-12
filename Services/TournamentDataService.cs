@@ -5,7 +5,7 @@ namespace MarchMadnessBlazor.Services;
 
 public class TournamentDataService(HttpClient http)
 {
-    public static readonly int[] AvailableYears = [2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024]; // 2020: no tournament
+    public static readonly int[] AvailableYears = [2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024, 2025, 2026]; // 2020: no tournament
 
     private readonly Dictionary<int, TournamentYear> _cache = [];
 

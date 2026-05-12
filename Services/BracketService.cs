@@ -8,7 +8,7 @@ public class BracketService(TournamentDataService dataService)
 
     public BracketState State { get; private set; } = new(TournamentData.GetInitialSeeding());
     public SimulationSettings Settings { get; set; } = new();
-    public int SelectedYear { get; private set; } = 2024;
+    public int SelectedYear { get; private set; } = 2026;
     public TournamentYear? CurrentYear { get; private set; }
     public bool HasActualResults => CurrentYear != null;
 
